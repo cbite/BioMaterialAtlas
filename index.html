@@ -1,0 +1,48 @@
+<!doctype html>
+<html ng-app="myApp">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  <body ng-controller='FirstController'>
+    <div class='row'>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">BioMaterial Atlas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        </div>
+      </nav>
+    </div>
+    <div class='row'>
+      <div class='col-sm-2'>
+        :<input ng-model="searchtxt.name" type="text" placeholder="Search datasets">
+      <!-- cardbox example to search the data sets-->
+      <div ng-controller='FirstController'>
+        <table>
+          <tr><th>Data sets</th></tr>
+          <tr ng-repeat="data in dataset | filter : searchtxt">
+          <td>{{data.name}}</td>
+          <td>{{data.date}}</td>
+          </tr>
+        </table>
+      </div> 
+      </div>
+      <div class='col-sm-10'>
+        <h3>{{second2}}</h3>
+        <div class='row'>
+            <p> this will be the study description area</p>
+        </div>
+        <div class='row'>
+          <div class='col-sm-5'>
+          <p>area to show some of the numerical data</p>
+           </div>
+           <div class='col-sm-5'>
+             <p>Area to show some of the images (Raw/Segmentation)</p>
+           </div>
+        </div>
+      </div>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src='js/myApp.js'></script>
+  </body>
+</html>
