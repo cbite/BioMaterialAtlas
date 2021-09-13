@@ -5,7 +5,7 @@
    </head>
    <body>
     <div class="container-fluid display-table">
-      <div class='row-top'>
+      <div class='row-top' style="color:red">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="#">BioMaterial Atlas</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@
               <input type="text" placeholder="Search" id="search">
           </div>
               <div class="navi" ng-controller='FirstController'>
-                  <ul ng-repeat="data in dataset">
+                  <ul ng-repeat="data in dataset | filter:searchtext">
                       <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{data.name}}</span><span class="hidden-xs hidden-sm">{{data.date}}</a></span></a></li>
                   </ul>
               </div>
@@ -36,8 +36,8 @@
                             <h5 class="card-title">Study description</h5>
                             <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in dataset|limitTo:1'>{{data.name}}</h6>
                             <p class="card-text" ng-repeat='data in dataset|limitTo:1'>
-                              <b>Date: </b> {{data.name}} <br >
-                              <b>Lead Author: </b>{{data.leadauthor}} <br>
+                              <b>Date: </b> {{data.name}}                   <b>Technology: </b> {{data.technology}} <br >
+                              <b>Lead Author: </b>{{data.leadauthor}}       <b>TopoChip type: </b> {{data.topochip}  <br>
                               <b>Lead PI: </b>{{data.leadpi}} <br>
                               <b>Cell Line: </b>{{data.cellline}} <br>
                             </p>
@@ -52,29 +52,56 @@
                           <div class="card-body">
                             <h5 class="card-title">Results of study</h5>
                             <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in dataset|limitTo:1'>{{data.name}}</h6>
-                            <div id='plotarea'></div>
+                            <select id="selectButton"></select>
 
+                            <div id='plotarea'></div>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-6 display-table-cell v-align">
+                        <!-- Card box for the raw images-->
                         <div class="card" style="width:100% ">
                           <div class="card-body">
                             <h5 class="card-title">Raw images</h5>
                             <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in dataset|limitTo:1'>{{data.name}}</h6>
                             <div class="row">
-                                      <div class="col-xs-2 v-align">  
-                                        <img src="images/dapi_channel.png" alt="" class="img-responsive center-block" />
-                                      </div>
-                                      <div class="col-xs-2 v-align">
-                                        <img src="images/fitc_channel.png" class="img-responsive center-block" />
-                                      </div>
-                                      <div class="col-xs-2 v-align">
-                                        <img src="images/tritc_channel.png" class="img-responsive center-block" />
-                                      </div>     
+                              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                                  <h5>DAPI channel</h5>
+                                  <img src="images/dapi_channel.png" alt="" class="img-responsive center-block" class="img-thumbnail"/>
+                              </div>
+                              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0"> 
+                                  <h5>TRITC channel</h5>
+                                  <img src="images/fitc_channel.png" class="img-responsive center-block"  class="img-thumbnail" />
+                              </div>
+                              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                                  <h5>FITC channel</h5>          
+                                  <img src="images/txred_channel.png" class="img-responsive center-block"  class="img-thumbnail"/>
+                              </div>
                             </div>
                           </div>
                       </div>
+
+                      <!-- Card box for the segmentation images-->
+                      <div class="card" style="width:100% ">
+                        <div class="card-body">
+                          <h5 class="card-title">Segmentation images</h5>
+                          <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in dataset|limitTo:1'>{{data.name}}</h6>
+                          <div class="row">
+                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                                <h5>DAPI channel</h5>
+                                <img src="images/segmentation1.png" alt="" class="img-responsive center-block" class="img-thumbnail"/>
+                            </div>
+                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0"> 
+                                <h5>TRITC channel</h5>
+                                <img src="images/segmentation2.png" class="img-responsive center-block"  class="img-thumbnail" />
+                            </div>
+                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                                <h5>FITC channel</h5>          
+                                <img src="images/segmentation3.png" class="img-responsive center-block"  class="img-thumbnail"/>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                     </div>
                   </header>
             
