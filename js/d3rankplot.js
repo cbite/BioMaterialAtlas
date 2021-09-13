@@ -3,6 +3,16 @@ var margin = {top: 10, right: 30, bottom: 40, left: 60},
     width = 460 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
+var allGroup = ["CD81", "Count"]
+
+// add the options to the button
+    d3.select("#selectButton")
+      .selectAll('myOptions')
+     	.data(allGroup)
+      .enter()
+    	.append('option')
+      .text(function (d) { return d; }) // text showed in the menu
+      .attr("value", function (d) { return d; }) 
 // append the svg object to the body of the page
 var svg = d3.select("#plotarea")
   .append("svg")
@@ -13,124 +23,121 @@ var svg = d3.select("#plotarea")
           "translate(" + margin.left + "," + margin.top + ")");
 
 
-    data = [{
-        rank: 1,
-        wage: 708,
-        id: '1384'
-    }, {
-        rank: 2,
-        wage: 704,
-        id: '1290'
-    }, {
-        rank: 3,
-        wage: 700,
-        id: '1336'
-    }, {
-        rank: 4,
-        wage: 699,
-        id: '1401'
-    }, {
-        rank: 5,
-        wage: 692,
-        id: '2011'
-    }, {
-        rank: 6,
-        wage: 683,
-        id: '1787'
-    }, {
-        rank: 7,
-        wage: 662,
-        id: '36'
-    }, {
-        rank: 8,
-        wage: 662,
-        id: '1271'
-    }, {
-        rank: 9,
-        wage: 661,
-        id: '2068'
-    }, {
-        rank: 10,
-        wage: 245,
-        id: '2117'
-    },{
-        rank: 11,
-        wage: 216,
-        id: '1084'
-    },{ 
-        rank: 12,
-        wage: 216,
-        id: '940'
-    },{
-        rank: 13,
-        wage: 215,
-        id: '799'
-    },{
-        rank: 14,
-        wage: 211,
-        id: '1657'
-    },{
-        rank: 15,
-        wage: 209,
-        id: '1510'
-    },{
-        rank: 16,
-        wage: 207,
-        id: '2316'
-    },{
-        rank: 17,
-        wage: 202,
-        id: '1408'
-    },{
-        rank: 18,
-        wage: 199,
-        id: '811'
-    },{
-        rank: 19,
-        wage: 171,
-        id: '611'
-    }]
 
+    d3.csv("data/data.csv").then(function(data) {
+        data.forEach(function(d) {
+            d.id = +d.id;
+            d.rank=+d.rank;
+            d.Count=+d.Count;
+            d.CD81=+d.CD81;
+          });
+          console.log(data[0]);
 
-    // Add X axis --> it is a date format
-    var x = d3.scaleLinear()
-    .domain([0, d3.max(data, function(d) { return +d.rank; })])
-      .range([ 0, width ]);
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+        // Add X axis --> it is a date format
+        var x = d3.scaleLinear()
+        .domain([0, d3.max(data, function(d) { return +d.rank; })])
+        .range([ 0, width ]);
+        svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
 
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.wage; })])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(y));
+        // Add Y axis
+        var y = d3.scaleLinear()
+        .domain([0, d3.max(data, function(d) { return +d.CD81; })])
+        .range([ height, 0 ]);
+        var yAxis=svg.append("g")
+        .call(d3.axisLeft(y));
 
-    // add the scatter points
-    svg.append('g')
-       .selectAll('dot')
-       .data(data)
-       .enter()
-       .append('circle')
-       .attr("cx", function (d) { return x(d.rank); } )
-      .attr("cy", function (d) { return y(d.wage); } )
-      .attr("r", 5)
-      .style("fill", "#69b3a2")
+            svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "end")
+            .attr("x", width)
+            .attr("y", height + 30)
+            .text("ranking of surfaces");
 
-    svg.append("text")
-        .attr("class", "x label")
-        .attr("text-anchor", "end")
-        .attr("x", width)
-        .attr("y", height + 30)
-        .text("ranking of surfaces");
+        svg.append("text")
+            .attr("class", "y label")
+            .attr("text-anchor", "end")
+            .attr("y",-50)
+            .attr("x",0)
+            .attr("dy", ".75em")
+            .attr("transform", "rotate(-90)")
+            .text("CD81 intensity");
 
-    svg.append("text")
-        .attr("class", "y label")
-        .attr("text-anchor", "end")
-        .attr("y",-50)
-        .attr("x",0)
-        .attr("dy", ".75em")
-        .attr("transform", "rotate(-90)")
-        .text("CD81 intensity");
-  
+        // Based on the selected measure, ranking has to be adjusted
+
+        // add a tooltip to show the id
+        var div = d3.select("body").append("div")
+                    .attr("class", "tooltip")
+                    .style("opacity", 0);
+       
+        
+
+        // add the scatter points
+        var circle = svg.append('g')
+        .selectAll('dot')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr("cx", function (d) { return x(d.rank); } )
+        .attr("cy", function (d) { return y(d.CD81); } )
+        .attr("r", 5)
+        .style("fill", "#69b3a2")
+        .on("mouseover", function(event,d) {
+            div.transition()
+              .duration(200)
+              .style("opacity", .9);
+            div.html('Surface: '+ d.id)
+              .style("left", (event.pageX) + "px")
+              .style("top", (event.pageY - 28) + "px");
+            })
+          .on("mouseout", function(d) {
+            div.transition()
+              .duration(500)
+              .style("opacity", 0);
+            });
+        
+     
+
+        function update(selectedGroup) {
+
+            // Create new data with the selection?
+            var dataFilter = data.map(function(d){return {id:d.id, rank: d.rank, value:d[selectedGroup]} })
+            console.log(dataFilter)
+            // update the domain of the axis
+            y.domain([0, d3.max(dataFilter, function(d) { return +d.value; })])
+            // update the axis itself without transition
+            yAxis.transition().duration(0).call(d3.axisLeft(y))
+            // add the scatter points
+            circle.data(dataFilter)
+                .transition()
+                .duration(1000)
+                .attr("cx", function (d) { return x(d.rank); } )
+                .attr("cy", function (d) { return y(d.value); } )
+                .attr("r", 5)
+                .style("fill", "#69b3a2")
+            circle.on("mouseover", function(event,d) {
+                div.transition()
+                  .duration(200)
+                  .style("opacity", .9);
+                div.html('Surface: '+ d.id)
+                  .style("left", (event.pageX) + "px")
+                  .style("top", (event.pageY - 28) + "px");
+                })
+              .on("mouseout", function(d) {
+                div.transition()
+                  .duration(500)
+                  .style("opacity", 0);
+                });
+            
+
+            }
+    
+            // When the button is changed, run the updateChart function
+            d3.select("#selectButton").on("change", function(d) {
+            // recover the option that has been chosen
+            var selectedOption = d3.select(this).property("value")
+            // run the updateChart function with this selected option
+            update(selectedOption)
+        })
+})
