@@ -85,18 +85,53 @@
                           <div class="card-body">
                             <h5 class="card-title">Selected surfaces for validation</h5>
                             <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
-                            <p class="card-text">
+                            <h6> Criteria: optimum cell number, degree of cell confluence and visual evaluation</h6>
+
                             <div class="row" >
                               <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" ng-repeat="img in fileNames" >
                                 <h6 > Surface id:{{img.imagename}} </h6>
                                 <img src='{{img.imagefile}}' class="img-responsive center-block" class="img-thumbnail"/>
                                 </div>
                             </div>
+                          </div>
+                        </div>
+                      <div>
+                        <p></p>
+                      </div>
+                      <!-- add the div for the barplot-->
+                      <div class='card' style="width:100%">
+                         <div class="cardbody">
+                           <h5 class='card-title'>Secondary screening</h5>
+                           <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
+                            <p class="card-text">
+                              <p>Hepatocyte dedifferentiation: Log2(fold change) of CYP3A4</p>
+                              <div id="plotbardiv"></div>
                             </p>
                           </div>
                       </div>
                       </div>
                       <div class="col-md-6 ">
+                        <div class='card' style='width:100%'>
+                          <div class='card-body'>
+                            <h5 class="card-title">Datasets in study</h5>
+                            <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
+                            <ul>
+                              <li>TopoChip screen</li>
+                              <li>TopoUnit rank selection</li>
+                              <li>CellProfiler: segmentation of images</li>
+                              <li>Functionality tests: Validation PHH</li>
+                              <li>Functionality tests: Protein level</li>
+                              <li>Functionality tests: Time course</li>
+                              <li>Functionality tests: gene level</li>
+                              <li>Functionality tests: validation Rhesus monkey</li>
+                              <li>Functionality test: Validation  Malaria infection</li>
+
+                            </ul> 
+                          </div>
+                        </div>
+                        <div>
+                          <p></p>
+                        </div>
                         <!-- Card box for the raw images-->
                         <div class="card" style="width:100% ">
                           <div class="card-body">
@@ -160,6 +195,7 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src='js/myApp.js'></script>
   <script src=js/d3rankplot.js></script>
+  <script src="js/d3barplot.js"></script>
   <link rel="stylesheet" href="css/style.css">
   </body>
 </html>
