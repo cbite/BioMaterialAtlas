@@ -1,31 +1,43 @@
 var app = angular.module('myApp', []);
-app.controller('FirstController', function($scope) {
-    $scope.dataset =[{name : 'Hepatocytes',date:'21-04-2021',cellline:"Hepatocytes",leadauthor:'J. de Boer',leadpi:'J. de Boer',topochip:"Polystyrene TopoChip"}
-                     ,{name : 'Adypocytes',date:'25-06-2018',cellline:"adypocytes",topochip:"Polystyrene TopoChip"}
-                    ,{name: 'Phenome28',date:"01-01-2001",celline:"Human Stem Cells",topochip:"Polystyrene TopoChip"}];
+app.controller('FirstController', function($http,$scope) {
+    $http.get('data/BioMaterialAtlas_StudyInformation.json').then(function (response) {
 
+        var data = response.data;
+        var status = response.status;
+        console.log(status)
+        var statusText = response.statusText;
+        var headers = response.headers;
+        var config = response.config;
+    
+        $scope.dataset = data;
+    
     $scope.selectData=function(){
-        $scope.dataSelected=$scope.dataset.filter(dataset => dataset.name == this.data.name);
-        console.log($scope.dataSelected);
-    };
+        $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == this.data.Name);
+        $scope.fileNames=$scope.getSource($scope.datasetFiltered.selectedsurfaces);
 
+        ;}
+    
+    $scope.getSource=function(){
+            sub_images=$scope.datasetFiltered.Name.split(',');
+            var images=[];
+            for(x in sub_images){
+               images.push({imagename:sub_images[x],imagefile:'images/TopoImages/Surface_FeatureIdx_'+sub_images[x]+'.png'});
+            }
+            return images
+        }
+    $scope.defineSecondaryScreening=function(){
+            tmp_secondary_screens=$scope.datasetFiltered.SecondaryScreening.split(';')
+            var secondaryScreens=[];
+            for(x in tmp_secondary_screens){
+                secondaryScreens.push({x})
+            }
+            return secondaryScreens
+    }
+    $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == 'Hepatocytes');
+    $scope.secondaryScreenInfo=$scope.defineSecondaryScreening();
+    console.log($scope.secondaryScreenInfo)
+    //$scope.fileNames=$scope.getSource($scope.datasetFiltered[0].selectedsurfaces);
+
+    });
 
 });
-app.controller('showhidectrl', function ($scope) {
-    $scope.showval = false;
-    $scope.hideval = false;
-    $scope.isShowHide = function (param) {
-    if (param == "show") {
-    $scope.showval = true;
-    $scope.hideval = true;
-    }
-    else if (param == "hide") {
-    $scope.showval = false;
-    $scope.hideval = false;
-    }
-    else {
-    $scope.showval = false;
-    $scope.hideval = false;
-    }
-    }
-    });
