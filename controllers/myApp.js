@@ -1,16 +1,11 @@
-var app = angular.module('myApp', []);
-app.controller('FirstController', function($http,$scope) {
-    $http.get('data/BioMaterialAtlas_StudyInformation.json').then(function (response) {
-
-        var data = response.data;
-        var status = response.status;
-        console.log(status)
-        var statusText = response.statusText;
-        var headers = response.headers;
-        var config = response.config;
-    
-        $scope.dataset = data;
-    
+var app = angular.module('BiomaterialAtlas',['ngResource']);
+app.controller('FirstController', function(getData,$scope) {
+    $scope.dataset=null;
+    $scope.loadedData=getData.getjson();
+    $scope.loadedData.then(function(data){
+        // load the data to the dataset in scope
+            $scope.dataset=data.data;
+    /*
     $scope.selectData=function(){
         $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == this.data.Name);
         $scope.fileNames=$scope.getSource($scope.datasetFiltered.selectedsurfaces);
@@ -32,12 +27,11 @@ app.controller('FirstController', function($http,$scope) {
                 secondaryScreens.push({x})
             }
             return secondaryScreens
-    }
+        }
+    */
     $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == 'Hepatocytes');
-    $scope.secondaryScreenInfo=$scope.defineSecondaryScreening();
-    console.log($scope.secondaryScreenInfo)
+    console.log($scope.datasetFiltered)
     //$scope.fileNames=$scope.getSource($scope.datasetFiltered[0].selectedsurfaces);
-
-    });
+    })
 
 });

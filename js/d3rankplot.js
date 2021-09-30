@@ -5,22 +5,6 @@ var margin = {top: 10, right: 30, bottom: 40, left: 60},
 
 var allGroup = ["CD81", "Count"]
 
-// add the options to the button
-    d3.select("#selectButton")
-      .selectAll('myOptions')
-     	.data(allGroup)
-      .enter()
-    	.append('option')
-      .text(function (d) { return d; }) // text showed in the menu
-      .attr("value", function (d) { return d; }) 
-// append the svg object to the body of the page
-var svg = d3.select("#plotarea")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
 
 
 
@@ -31,7 +15,24 @@ var svg = d3.select("#plotarea")
             d.Count=+d.Count;
             d.CD81=+d.CD81;
           });
-          console.log(data[0]);
+
+          // add the options to the button
+          d3.select("#selectButton")
+          .selectAll('myOptions')
+          .data(allGroup)
+          .enter()
+          .append('option')
+          .text(function (d) { return d; }) // text showed in the menu
+          .attr("value", function (d) { return d; }) 
+    
+        // append the svg object to the body of the page
+        var svg = d3.select("#plotarea")
+        .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
 
         // Add X axis --> it is a date format
         var x = d3.scaleLinear()
@@ -103,7 +104,6 @@ var svg = d3.select("#plotarea")
 
             // Create new data with the selection?
             var dataFilter = data.map(function(d){return {id:d.id, rank: d.rank, value:d[selectedGroup]} })
-            console.log(dataFilter)
             // update the domain of the axis
             y.domain([0, d3.max(dataFilter, function(d) { return +d.value; })])
             // update the axis itself without transition
