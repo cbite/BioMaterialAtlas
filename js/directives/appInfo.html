@@ -1,0 +1,22 @@
+<h5>Data table study description</h5>
+<table style="width:100%"  style="border-collapse: collapse; border: none;">
+  <tr>
+    <td><b>Study documentation</b></td>
+    <td>{{info.Description}}</td>
+    <td></td>
+  </tr>
+</table>
+<table style="width:100%"  style="border-collapse: collapse; border: none;">
+  <tr>
+    <td><b>Date of Study: </b></b> {{info.Name}}  </td>
+    <td><b>Lead author: </b>{{info['Lead author']}}  </td>
+    <td><b>Lead Principal Investigator: </b> {{info['Lead Principal investigator']}}</td>
+    <td> <b>Cell Line: </b>{{info.CellType}} </td>
+  </tr>
+  <tr>
+    <td><b>Technology: </b> {{info.Technology}}</td>
+    <td><b>TopoChip type: </b>{{info['TopoChip type']}}</td>
+    <td><b>Cell Staining: </b>{{info['Cell staining']}}</td>
+    <td><b>Chip replicates: </b> {{info['Chip replicates']}} </td>
+  </tr>
+</table>  
