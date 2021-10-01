@@ -1,10 +1,10 @@
 <!doctype html>
-<html ng-app="myApp">
+<html>
   <head>
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  <body ng-controller='FirstController'>
+   <link rel="stylesheet" href="js/bootstrap/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  <body ng-controller='FirstController'>
    </head>
-   <body>
-    <div class="container-fluid display-table" ng-controller='FirstController'>
+   <body ng-app='BiomaterialAtlas'>
+    <div class="container-fluid display-table" >
       <div class='row' style="color:red">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="#">BioMaterial Atlas</a>
@@ -22,60 +22,30 @@
           </div>
               <div class="navi">
                   <ul ng-repeat="data in dataset | filter:search">
-                      <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{data.name}}</span></a></li>
+                      <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{data.Name}}</span></a></li>
                   </ul>
               </div>
           </div>
           <div class="col-md-10 col-sm-11 display-table-cell v-align">
               <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-              <div class="row">
+              <div class="row" >
                   <header>
                       <div class="col-md-13" >
                         <div class="card" style="width: 100%;">
-                          <div class="card-body">
+                          <div class="card-body" ng-repeat="data in datasetFiltered">
                             <h5 class="card-title">Study description</h5>
-                            <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
-                            <p class="card-text" ng-repeat='data in datasetFiltered'>
-                              <table style="width:100%" ng-repeat='data in datasetFiltered' style="border-collapse: collapse; border: none;">
-                                <tr>
-                                  <td><b>Study documentation</b></td>
-                                  <td>{{data.description}}</td>
-                                  <td></td>
-                                </tr>
-                                </table>
-                                <table style="width:100%" ng-repeat='data in datasetFiltered' style="border-collapse: collapse; border: none;">
-
-                                <tr>
-                                  <td><b>Date of Study: </b></b> {{data.name}}  </td>
-                                  <td><b>Lead author: </b>{{data.leadauthor}}  </td>
-                                  <td><b>Lead Principal Investigator: </b> {{data.leadpi}}</td>
-                                  <td> <b>Cell Line: </b>{{data.cellline}} </td>
-                                </tr>
-                                <tr>
-                                  <td><b>Technology: </b> {{data.technology}}</td>
-                                  <td><b>TopoChip type: </b>{{data.topochip}}</td>
-                                  <td><b>Cell Staining: </b>{{data.staining}}</td>
-                                  <td><b>Chip replicates: </b> {{data.chipreplicate}} </td>
-                                </tr>
-                              </table>
+                            <h6 class="card-subtitle mb-2 text-muted">{{data.name}}</h6>
+                            <p class="card-text">
+                              <app-info info='data'></app-info>
                             </p>
-
                           </div>
                         </div>
-                        
-  
                       </div>
                 </div>
                 <div class="row">
                       <div class="col-md-6">
-                        <div class="card" style="width: 100%;">
-                          <div class="card-body">
-                            <h5 class="card-title">Ranking of TopoUnits</h5>
-                            <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
-                            <select id="selectButton"></select>
-                            <!-- Card box for selected surfaces-->  
-                            <div id='plotarea'></div>
-                          </div>
+                        <div class="card" style="width: 100%;" ng-repeat="data in datasetFiltered"> 
+                          <bar-plot info='data'></bar-plot>
                         </div>
                         <!-- fix the padding between two cards and not with adding a paragraph-->
                         <div>
@@ -83,16 +53,7 @@
                         </div>
                         <div class="card" style="width:100% ">
                           <div class="card-body">
-                            <h5 class="card-title">Selected surfaces for validation</h5>
-                            <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
-                            <h6> Criteria: optimum cell number, degree of cell confluence and visual evaluation</h6>
-
-                            <div class="row" >
-                              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" ng-repeat="img in fileNames" >
-                                <h6 > Surface id:{{img.imagename}} </h6>
-                                <img src='{{img.imagefile}}' class="img-responsive center-block" class="img-thumbnail"/>
-                                </div>
-                            </div>
+                            <image-info info='fileNames'></image-info>
                           </div>
                         </div>
                       <div>
@@ -102,7 +63,7 @@
                       <div class='card' style="width:100%">
                          <div class="cardbody">
                            <h5 class='card-title'>Secondary screening</h5>
-                           <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
+                           <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.Name}}</h6>
                             <p class="card-text">
                               <p>Hepatocyte dedifferentiation: Log2(fold change) of CYP3A4</p>
                               <div id="plotbardiv"></div>
@@ -112,22 +73,7 @@
                       </div>
                       <div class="col-md-6 ">
                         <div class='card' style='width:100%'>
-                          <div class='card-body'>
-                            <h5 class="card-title">Datasets in study</h5>
-                            <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
-                            <ul>
-                              <li>TopoChip screen</li>
-                              <li>TopoUnit rank selection</li>
-                              <li>CellProfiler: segmentation of images</li>
-                              <li>Functionality tests: Validation PHH</li>
-                              <li>Functionality tests: Protein level</li>
-                              <li>Functionality tests: Time course</li>
-                              <li>Functionality tests: gene level</li>
-                              <li>Functionality tests: validation Rhesus monkey</li>
-                              <li>Functionality test: Validation  Malaria infection</li>
-
-                            </ul> 
-                          </div>
+                          <dataset-info info='datasetsSecondaryScreening'></dataset-info>
                         </div>
                         <div>
                           <p></p>
@@ -138,20 +84,7 @@
                             <h5 class="card-title">Raw images</h5>
                             <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
                             <p>Images per channel: 4356, total images per chip: 10368, Total images in screen: 103680</p>
-                            <div class="row">
-                              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                                  <h5>DAPI channel</h5>
-                                  <img src="images/dapi_channel.png" alt="" class="img-responsive center-block" class="img-thumbnail"/>
-                              </div>
-                              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0"> 
-                                  <h5>TRITC channel</h5>
-                                  <img src="images/fitc_channel.png" class="img-responsive center-block"  class="img-thumbnail" />
-                              </div>
-                              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                                  <h5>FITC channel</h5>          
-                                  <img src="images/txred_channel.png" class="img-responsive center-block"  class="img-thumbnail"/>
-                              </div>
-                            </div>
+
                           </div>
                       </div>
                       <div>
@@ -190,12 +123,23 @@
   </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src='js/myApp.js'></script>
-  <script src=js/d3rankplot.js></script>
+  <!-- Modules-->
+  <script src="js/angularjs/angular.js"></script>
+  <script src="js/angularjs/angular-resource.js"></script>
+  <script src='js/jquery/jquery.js'></script>
+  <script src="js/bootstrap/bootstrap.bundle.js" ></script>
+  <script src="js/d3js/d3.min.js"></script>
   <script src="js/d3barplot.js"></script>
+  <script src="js/d3rankplot.js"></script>
+  <!-- Controllers-->
+  <script src='js/controllers/myApp.js'></script>
+  <!-- Services-->
+  <script src="js/factory/getData.js"></script>
+  <!-- directives -->
+  <script src="js/directives/appInfo.js"></script>
+  <script src="js/directives/datasetInfo.js"></script>
+  <script src='js/directives/barPlot.js'></script>
+  <script src='js/directives/imageInfo.js'></script>
   <link rel="stylesheet" href="css/style.css">
   </body>
 </html>
