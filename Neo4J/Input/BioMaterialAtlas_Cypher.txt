@@ -1,0 +1,77 @@
+################################################### Define all the nodes ###############################################
+
+###### STUDIES
+
+CREATE (Study:HeartValveStudy{ID:'TEHVs',Name:'Living Tissue Engineered Heart Valves'})
+CREATE (Study:HeartValveStudy{ID:'dTEHVs',Name:'Decellularized Tissue Engineered Heart Vales'})
+CREATE (Study:HeartValveStudy{ID:'iValve1',Name:'In situ tissue engineered heart valves, iValve 1'})
+CREATE (Study:HeartValveStudy{ID:'1Valve',Name:'In situ tissue engineered heart valves, 1Valve'})
+CREATE (Study:HeartValveStudy{ID:'iValve2',Name:'In situ tissue engineered heart valves, iValve 2'})
+CREATE (Study:HeartValveStudy{ID:'ImaValve',Name:'In situ tissue engineered heart valves, ImaValve'})
+
+###### BIOMATERIALS (SCAFFOLD + STENT + DESIGN VERSION)
+
+CREATE (Biomaterial:HeartValve{Scaffold:'PGA/P4HB',DesignVersion:'Old',Support:'None'})
+CREATE (Biomaterial:HeartValve{Scaffold:'PGA/P4HB',DesignVersion:'Old',Support:'Nitinol Stent'})
+CREATE (Biomaterial:HeartValve{Scaffold:'PGA/P4HB',DesignVersion:'New',Support:'Nitinol Stent'})
+CREATE (Biomaterial:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'Old',Supportt:'None'})
+CREATE (Biomaterial:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'Old',Support:'Nitinol Stent'})
+CREATE (Biomaterial:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'New', Support:'None'})
+CREATE (Biomaterial:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'New', Support:'Nitinol Stent'})
+CREATE (Biomaterial:HeartValve{Scaffold:'PCL-BisUrea and PCU-131',DesignVersion:'', Support:'PEEK ring'})
+CREATE (Biomaterial:HeartValve{Scaffold:'PCL2kU4Un',DesignVersion:'', Support:'stainles steel reinforcement ring'})
+
+###### CELLS 
+
+CREATE (Cells:CellType{Cell:'Autologous vascular derived myofibroblasts'})
+CREATE (Cells:CellType{Cell:'Endothelial cells'})
+CREATE (Cells:CellType{Cell:'None'})
+
+###### IMPLANTATION METHODS
+
+CREATE (Implantation:SurgicalImplantation{Name:'Surgical Implantation'})
+CREATE (Implantation:MinimallyInvasiveImplantation{Name:'Minimally invasive implantation',Method:'Transapical'})
+CREATE (Implantation:MinimallyInvasiveImplantation{Name:'Minimally invasive implantation',Method:'Transvenous'})
+
+###### IMPLANTATION LOCATION
+CREATE (Location:ImplantationLocation{ID:'Pulmonary',Name:'Pulmonary position'}
+CREATE (Location:ImplantationLocation{ID:'Aortic',Name:'Aortic position'}
+
+###### TEAMS / Program
+CREATE (Team:ResearchTeam{Members:'TU/e, Xeltis, UHZ, and UMCU',Program:'SmartMix TERM'})
+CREATE (Team:ResearchTeam{Members:'TU/e, Xeltis, Paris, and UHZ',Program:'DPTE'})
+CREATE (Team:ResearchTeam{Members:'TU/e, Xeltis, and UHZ',Program:'None'})
+CREATE (Team:ResearchTeam{Members:'TU/e, Xeltis, and UHZ',Program:'FP7'})
+CREATE (Team:ResearchTeam{Members:'TU/e, Xeltis, and Berlin',Program:'None'})
+CREATE (Team:ResearchTeam{Members:'TU/e',Program:'LifeValve'})
+
+############################################ Define all relationships #################################################
+
+########## IMPLANTATION METHOD USED IN STUDY
+
+MATCH (a:HeartValveStudy),(b:SurgicalImplantation) WHERE a.ID='TEHVs' 
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='TEHVs' AND b.Method='Transapical'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='dTEHVs' AND b.Method='Transapical'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='dTEHVs' AND b.Method='Transvenous'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+MATCH (a:HeartValveStudy),(b:SurgicalImplantation) WHERE a.ID='iValve1' 
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+MATCH (a:HeartValveStudy),(b:SurgicalImplantation) WHERE a.ID='1Valve' 
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='1Valve' AND b.Method='Transapical'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+
+MATCH (a:HeartValveStudy),(b:SurgicalImplantation) WHERE a.ID='iValve2' 
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='iValve2' AND b.Method='Transapical'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='ImaValve' AND b.Method='Transapical'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
