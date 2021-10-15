@@ -2,76 +2,184 @@
 
 ###### STUDIES
 
-CREATE (Study:HeartValveStudy{ID:'TEHVs',Name:'Living Tissue Engineered Heart Valves'})
-CREATE (Study:HeartValveStudy{ID:'dTEHVs',Name:'Decellularized Tissue Engineered Heart Vales'})
-CREATE (Study:HeartValveStudy{ID:'iValve1',Name:'In situ tissue engineered heart valves, iValve 1'})
-CREATE (Study:HeartValveStudy{ID:'1Valve',Name:'In situ tissue engineered heart valves, 1Valve'})
-CREATE (Study:HeartValveStudy{ID:'iValve2',Name:'In situ tissue engineered heart valves, iValve 2'})
-CREATE (Study:HeartValveStudy{ID:'ImaValve',Name:'In situ tissue engineered heart valves, ImaValve'})
+CREATE (TEHVs:HeartValveStudy{ID:'TEHVs',Name:'Living Tissue Engineered Heart Valves'})
+CREATE (dTEHVs:HeartValveStudy{ID:'dTEHVs',Name:'Decellularized Tissue Engineered Heart Vales'})
+CREATE (iValve1:HeartValveStudy{ID:'iValve1',Name:'In situ tissue engineered heart valves, iValve 1'})
+CREATE (OneValve:HeartValveStudy{ID:'1Valve',Name:'In situ tissue engineered heart valves, 1Valve'})
+CREATE (iValve2:HeartValveStudy{ID:'iValve2',Name:'In situ tissue engineered heart valves, iValve 2'})
+CREATE (ImaValve:HeartValveStudy{ID:'ImaValve',Name:'In situ tissue engineered heart valves, ImaValve'})
 
 ###### BIOMATERIALS (SCAFFOLD + STENT + DESIGN VERSION)
 
-CREATE (Biomaterial:HeartValve{Scaffold:'PGA/P4HB',DesignVersion:'Old',Support:'None'})
-CREATE (Biomaterial:HeartValve{Scaffold:'PGA/P4HB',DesignVersion:'Old',Support:'Nitinol Stent'})
-CREATE (Biomaterial:HeartValve{Scaffold:'PGA/P4HB',DesignVersion:'New',Support:'Nitinol Stent'})
-CREATE (Biomaterial:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'Old',Supportt:'None'})
-CREATE (Biomaterial:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'Old',Support:'Nitinol Stent'})
-CREATE (Biomaterial:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'New', Support:'None'})
-CREATE (Biomaterial:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'New', Support:'Nitinol Stent'})
-CREATE (Biomaterial:HeartValve{Scaffold:'PCL-BisUrea and PCU-131',DesignVersion:'', Support:'PEEK ring'})
-CREATE (Biomaterial:HeartValve{Scaffold:'PCL2kU4Un',DesignVersion:'', Support:'stainles steel reinforcement ring'})
+CREATE (Biomaterial1:HeartValve{Scaffold:'PGA/P4HB',DesignVersion:'Old',Support:'None'})
+CREATE (Biomaterial2:HeartValve{Scaffold:'PGA/P4HB',DesignVersion:'Old',Support:'Nitinol Stent'})
+CREATE (Biomaterial3:HeartValve{Scaffold:'PGA/P4HB',DesignVersion:'New',Support:'Nitinol Stent'})
+CREATE (Biomaterial4:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'Old',Supportt:'None'})
+CREATE (Biomaterial5:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'Old',Support:'Nitinol Stent'})
+CREATE (Biomaterial6:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'New', Support:'None'})
+CREATE (Biomaterial7:HeartValve{Scaffold:'P(L,DL)LA',DesignVersion:'New', Support:'Nitinol Stent'})
+CREATE (Biomaterial8:HeartValve{Scaffold:'PCL-BisUrea and PCU-131',DesignVersion:'', Support:'PEEK ring'})
+CREATE (Biomaterial9:HeartValve{Scaffold:'PCL2kU4Un',DesignVersion:'', Support:'stainles steel reinforcement ring'})
 
 ###### CELLS 
 
-CREATE (Cells:CellType{Cell:'Autologous vascular derived myofibroblasts'})
-CREATE (Cells:CellType{Cell:'Endothelial cells'})
-CREATE (Cells:CellType{Cell:'None'})
+CREATE (Cells1:CellType{Cell:'Autologous vascular derived myofibroblasts'})
+CREATE (Cells2:CellType{Cell:'Endothelial cells'})
+CREATE (Cells3:CellType{Cell:'None'})
 
 ###### IMPLANTATION METHODS
 
-CREATE (Implantation:SurgicalImplantation{Name:'Surgical Implantation'})
-CREATE (Implantation:MinimallyInvasiveImplantation{Name:'Minimally invasive implantation',Method:'Transapical'})
-CREATE (Implantation:MinimallyInvasiveImplantation{Name:'Minimally invasive implantation',Method:'Transvenous'})
+CREATE (Implantation1:ImplantationMethod{Name:'Surgical Implantation'})
+CREATE (Implantation2:ImplantationMethod{Name:'Minimally invasive implantation',Method:'Transapical'})
+CREATE (Implantation3:ImplantationMethod{Name:'Minimally invasive implantation',Method:'Transvenous'})
 
 ###### IMPLANTATION LOCATION
-CREATE (Location:ImplantationLocation{ID:'Pulmonary',Name:'Pulmonary position'}
-CREATE (Location:ImplantationLocation{ID:'Aortic',Name:'Aortic position'}
+CREATE (Location1:ImplantationLocation{ID:'Pulmonary',Name:'Pulmonary position'}
+CREATE (Location2:ImplantationLocation{ID:'Aortic',Name:'Aortic position'}
 
 ###### TEAMS / Program
-CREATE (Team:ResearchTeam{Members:'TU/e, Xeltis, UHZ, and UMCU',Program:'SmartMix TERM'})
-CREATE (Team:ResearchTeam{Members:'TU/e, Xeltis, Paris, and UHZ',Program:'DPTE'})
-CREATE (Team:ResearchTeam{Members:'TU/e, Xeltis, and UHZ',Program:'None'})
-CREATE (Team:ResearchTeam{Members:'TU/e, Xeltis, and UHZ',Program:'FP7'})
-CREATE (Team:ResearchTeam{Members:'TU/e, Xeltis, and Berlin',Program:'None'})
-CREATE (Team:ResearchTeam{Members:'TU/e',Program:'LifeValve'})
+CREATE (Team1:ResearchTeam{Members:'TU/e, Xeltis, UHZ, and UMCU',Program:'SmartMix TERM'})
+CREATE (Team2:ResearchTeam{Members:'TU/e, Xeltis, Paris, and UHZ',Program:'DPTE'})
+CREATE (Team3:ResearchTeam{Members:'TU/e, Xeltis, and UHZ',Program:'None'})
+CREATE (Team4:ResearchTeam{Members:'TU/e, Xeltis, and UHZ',Program:'FP7'})
+CREATE (Team5:ResearchTeam{Members:'TU/e, Xeltis, and Berlin',Program:'None'})
+CREATE (Team6:ResearchTeam{Members:'TU/e',Program:'LifeValve'})
+CREATE (Team7:ResearchTeam{Members:'TU/e and UMCU',Program:'None'})
+CREATE (Team8:ResearchTeam{Members:'UHZ, Xeltis, and Berlin',Program:'None'})
 
 ############################################ Define all relationships #################################################
 
 ########## IMPLANTATION METHOD USED IN STUDY
-
-MATCH (a:HeartValveStudy),(b:SurgicalImplantation) WHERE a.ID='TEHVs' 
-CREATE (a)-[r:ImplantationMethodUsed]->(b)
-MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='TEHVs' AND b.Method='Transapical'
-CREATE (a)-[r:ImplantationMethodUsed]->(b)
-
-MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='dTEHVs' AND b.Method='Transapical'
-CREATE (a)-[r:ImplantationMethodUsed]->(b)
-MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='dTEHVs' AND b.Method='Transvenous'
-CREATE (a)-[r:ImplantationMethodUsed]->(b)
-
-MATCH (a:HeartValveStudy),(b:SurgicalImplantation) WHERE a.ID='iValve1' 
-CREATE (a)-[r:ImplantationMethodUsed]->(b)
-
-MATCH (a:HeartValveStudy),(b:SurgicalImplantation) WHERE a.ID='1Valve' 
-CREATE (a)-[r:ImplantationMethodUsed]->(b)
-MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='1Valve' AND b.Method='Transapical'
+# Merge is used since there is no directed information in the method used
+MATCH (a:HeartValveStudy),(b:ImplantationMethod) WHERE a.ID='TEHVs' AND b.Name='Surgical Implantation'
 CREATE (a)-[r:ImplantationMethodUsed]->(b)
 
 
-MATCH (a:HeartValveStudy),(b:SurgicalImplantation) WHERE a.ID='iValve2' 
-CREATE (a)-[r:ImplantationMethodUsed]->(b)
-MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='iValve2' AND b.Method='Transapical'
+MATCH (a:HeartValveStudy),(b:ImplantationMethod) WHERE a.ID='TEHVs' AND b.Method='Transapical'
 CREATE (a)-[r:ImplantationMethodUsed]->(b)
 
-MATCH (a:HeartValveStudy),(b:MinimallyInvasiceImplantation) WHERE a.ID='ImaValve' AND b.Method='Transapical'
+MATCH (a:HeartValveStudy),(b:ImplantationMethod) WHERE a.ID='dTEHVs' AND b.Method='Transapical'
 CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+MATCH (a:HeartValveStudy),(b:ImplantationMethod) WHERE a.ID='dTEHVs' AND b.Method='Transvenous'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+MATCH (a:HeartValveStudy),(b:ImplantationMethod) WHERE a.ID='iValve1' AND b.Name='Surgical Implantation'
+CREATE (a)-[r:ImplantationMethodUsed]->(b) 
+
+MATCH (a:HeartValveStudy),(b:ImplantationMethod) WHERE a.ID='1Valve' AND b.Name='Surgical Implantation'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+MATCH (a:HeartValveStudy),(b:ImplantationMethod) WHERE a.ID='1Valve' AND b.Method='Transapical'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+
+MATCH (a:HeartValveStudy),(b:ImplantationMethod) WHERE a.ID='iValve2' AND b.Name='Surgical Implantation'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+MATCH (a:HeartValveStudy),(b:ImplantationMethod) WHERE a.ID='iValve2' AND b.Method='Transapical'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+MATCH (a:HeartValveStudy),(b:ImplantationMethod) WHERE a.ID='ImaValve' AND b.Method='Transapical'
+CREATE (a)-[r:ImplantationMethodUsed]->(b)
+
+#### TEAMS WITHIN PROJECT
+MATCH (a:HeartValveStudy),(b:ResearchTeam) WHERE a.ID='TEHVs' AND b.Program='SmartMix TERM'
+CREATE (a)-[r:TeamParticipatedInStudy]->(b)
+MATCH (a:HeartValveStudy),(b:ResearchTeam) WHERE a.ID='TEHVs' AND b.Program='None' AND b.Members='TU/e, Xeltis, and UHZ'
+CREATE (a)-[r:TeamParticipatedInStudy]->(b)
+MATCH (a:HeartValveStudy),(b:ResearchTeam) WHERE a.ID='TEHVs' AND b.Program='DPTE' 
+CREATE (a)-[r:TeamParticipatedInStudy]->(b)
+#dTEHVs
+MATCH (a:HeartValveStudy),(b:ResearchTeam) WHERE a.ID='dTEHVs' AND b.Program='FP7' 
+CREATE (a)-[r:TeamPerformedStudy]->(b)
+MATCH (a:HeartValveStudy),(b:ResearchTeam) WHERE a.ID='dTEHVs' AND b.Program='None' AND b.Members='TU/e, Xeltis, and UHZ' 
+CREATE (a)-[r:TeamPerformedStudy]->(b)
+MATCH (a:HeartValveStudy),(b:ResearchTeam) WHERE a.ID='dTEHVs' AND b.Program='None' AND b.Members='TU/e, Xeltis, and Berlin' 
+CREATE (a)-[r:TeamPerformedStudy]->(b)
+MATCH (a:HeartValveStudy),(b:ResearchTeam)WHERE a.ID='dTEHVs' AND b.Program='LifeValve' 
+CREATE (a)-[r:TeamPerformedStudy]->(b)
+# iValve1
+MATCH (a:HeartValveStudy),(b:ResearchTeam) WHERE a.ID='iValve1' AND b.Program='None' AND b.Members='TU/e and UMCU' 
+CREATE (a)-[r:TeamPerformedStudy]->(b)
+
+
+
+
+
+#### TEAMS PERFORMED THE IMPLANTATION
+# TEHVs
+MATCH (a:HeartValveStudy),(b:ResearchTeam),(c:ImplantationMethod) WHERE a.ID='TEHVs' AND b.Program='SmartMix TERM' and c.Name='Surgical Implantation'
+CREATE (b)-[r:TeamPerformedStudy]->(c)
+MATCH (a:HeartValveStudy),(b:ResearchTeam),(c:ImplantationMethod) WHERE a.ID='TEHVs' AND b.Program='DPTE' and c.Method='Transapical'
+CREATE (b)-[r:TeamPerformedStudy]->(c)
+MATCH (a:HeartValveStudy),(b:ResearchTeam),(c:ImplantationMethod) WHERE a.ID='TEHVs' AND b.Program='None' AND b.Members='TU/e, Xeltis, and UHZ' and c.Method='Transapical'
+CREATE (b)-[r:TeamPerformedStudy]->(c)
+#dTEHVs
+MATCH (a:HeartValveStudy),(b:ResearchTeam),(c:ImplantationMethod) WHERE a.ID='dTEHVs' AND b.Program='FP7' AND c.Method='Transapical'
+CREATE (b)-[r:TeamPerformedStudy]->(c)
+MATCH (a:HeartValveStudy),(b:ResearchTeam),(c:ImplantationMethod) WHERE a.ID='dTEHVs' AND b.Program='None' AND b.Members='TU/e, Xeltis, and UHZ' AND c.Method='Transapical'
+CREATE (b)-[r:TeamPerformedStudy]->(c)
+MATCH (a:HeartValveStudy),(b:ResearchTeam),(c:ImplantationMethod) WHERE a.ID='dTEHVs' AND b.Program='None' AND b.Members='TU/e, Xeltis, and Berlin' AND c.Method='Transvenous'
+CREATE (b)-[r:TeamPerformedStudy]->(c)
+MATCH (a:HeartValveStudy),(b:ResearchTeam),(c:ImplantationMethod) WHERE a.ID='dTEHVs' AND b.Program='LifeValve' AND c.Method='Transvenous'
+CREATE (b)-[r:TeamPerformedStudy]->(c)
+# iValve1
+MATCH (a:HeartValveStudy),(b:ResearchTeam),(c:ImplantationMethod) WHERE a.ID='iValve1' AND b.Program='None' AND b.Members='TU/e and UMCU' AND c.Name='Surgical Implantation'
+CREATE (a)-[r:TeamPerformedStudy]->(b)
+
+##### Scaffold used in project
+# TEHVs
+MATCH (a:HeartValveStudy),(b:HeartValve) WHERE a.ID='TEHVs' AND b.Scaffold='PGA/P4HB' AND b.DesignVersion='Old' AND b.Support='None'
+CREATE (a)-[r:scaffoldUsedInStudy]->(b)
+MATCH (a:HeartValveStudy),(b:HeartValve) WHERE a.ID='TEHVs' AND b.Scaffold='PGA/P4HB' AND b.DesignVersion='Old' AND b.Support='Nitinol Stent'
+CREATE (a)-[r:scaffoldUsedInStudy]->(b)
+MATCH (a:HeartValveStudy),(b:HeartValve) WHERE a.ID='TEHVs' AND b.Scaffold='P(L,DL)LA' AND b.DesignVersion='Old' AND b.Support='Nitinol Stent'
+CREATE (a)-[r:scaffoldUsedInStudy]->(b)
+
+#dTEHVs
+MATCH (a:HeartValveStudy),(b:HeartValve) WHERE a.ID='dTEHVs' AND b.Scaffold='PGA/P4HB' AND b.DesignVersion='Old' AND b.Support='Nitinol Stent'
+CREATE (a)-[r:scaffoldUsedInStudy]->(b)
+MATCH (a:HeartValveStudy),(b:HeartValve) WHERE a.ID='dTEHVs' AND b.Scaffold='PGA/P4HB' AND b.DesignVersion='New' AND b.Support='Nitinol Stent'
+CREATE (a)-[r:scaffoldUsedInStudy]->(b)
+
+#iValve1
+MATCH (a:HeartValveStudy),(b:HeartValve) WHERE a.ID='iValve1' AND b.Scaffold='PCL-BisUrea and PCU-131' AND b.DesignVersion='' AND b.Support='PEEK ring'
+CREATE (a)-[r:scaffoldUsedInStudy]->(b)
+
+
+###### SCAFFOLD IMPLANTED BY TEAM AND IN METHOD
+# TEHVs
+MATCH (a:HeartValveStudy),(b:HeartValve),(c:ImplantationMethod),(d:ResearchTeam) WHERE a.ID='TEHVs' AND b.Scaffold='PGA/P4HB' AND b.DesignVersion='Old' AND b.Support='None' AND c.Name='Surgical Implantation' AND d.Program='SmartMix TERM'
+CREATE (b)-[r1:scaffoldImplantedByTeam]->(d)
+CREATE (b)-[r2:scaffoldImplantationMethod]->(c)
+
+MATCH (a:HeartValveStudy),(b:HeartValve),(c:ImplantationMethod),(d:ResearchTeam) WHERE a.ID='TEHVs' AND b.Scaffold='PGA/P4HB' AND b.DesignVersion='Old' AND b.Support='Nitinol Stent' AND c.Method='Transapical' AND d.Program='DPTE'
+CREATE (b)-[r1:scaffoldImplantedByTeam]->(d)
+CREATE (b)-[r2:scaffoldImplantationMethod]->(c)
+
+MATCH (a:HeartValveStudy),(b:HeartValve),(c:ImplantationMethod),(d:ResearchTeam) WHERE a.ID='TEHVs' AND b.Scaffold='P(L,DL)LA' AND b.DesignVersion='Old' AND b.Support='Nitinol Stent' AND c.Method='Transapical' AND d.Program='None' AND d.Members='TU/e, Xeltis, and UHZ'
+CREATE (b)-[r1:scaffoldImplantedByTeam]->(d)
+CREATE (b)-[r2:scaffoldImplantationMethod]->(c)
+
+# dTEHVs
+MATCH (a:HeartValveStudy),(b:HeartValve),(c:ImplantationMethod),(d:ResearchTeam) WHERE a.ID='dTEHVs' AND b.Scaffold='PGA/P4HB' AND b.DesignVersion='Old' AND b.Support='Nitinol Stent' AND c.Method='Transapical' AND d.Program='FP7'
+CREATE (b)-[r1:scaffoldImplantedByTeam]->(d)
+CREATE (b)-[r2:scaffoldImplantationMethod]->(c)
+MATCH (a:HeartValveStudy),(b:HeartValve),(c:ImplantationMethod),(d:ResearchTeam) WHERE a.ID='dTEHVs' AND b.Scaffold='PGA/P4HB' AND b.DesignVersion='New' AND b.Support='Nitinol Stent' AND c.Method='Transapical' AND d.Program='None' AND d.Members=' TU/e, Xeltis, and UHZ'
+CREATE (b)-[r1:scaffoldImplantedByTeam]->(d)
+CREATE (b)-[r2:scaffoldImplantationMethod]->(c)
+
+
+MATCH (a:HeartValveStudy),(b:HeartValve),(c:ImplantationMethod),(d:ResearchTeam) WHERE a.ID='dTEHVs' AND b.Scaffold='PGA/P4HB' AND b.DesignVersion='Old' AND b.Support='Nitinol Stent' AND c.Method='Transvenous' AND d.Program='None' AND d.Members='UHZ, Xeltis, and Berlin'
+CREATE (b)-[r1:scaffoldImplantedByTeam]->(d)
+CREATE (b)-[r2:scaffoldImplantationMethod]->(c)
+
+MATCH (a:HeartValveStudy),(b:HeartValve),(c:ImplantationMethod),(d:ResearchTeam) WHERE a.ID='dTEHVs' AND b.Scaffold='PGA/P4HB' AND b.DesignVersion='New' AND b.Support='Nitinol Stent' AND c.Method='Transvenous' AND d.Program='LifeValve' AND d.Members='TU/e'
+CREATE (b)-[r1:scaffoldImplantedByTeam]->(d)
+CREATE (b)-[r2:scaffoldImplantationMethod]->(c)
+
+#iValve 1
+MATCH (a:HeartValveStudy),(b:HeartValve),(c:ImplantationMethod),(d:ResearchTeam) WHERE a.ID='iValve1' AND b.Scaffold='PCL-BisUrea and PCU-131'  AND b.Support='PEEK ring' AND c.Name='Surgical Implantation' AND d.Program='None' AND d.Members='TU/e and UMCU'
+CREATE (b)-[r1:scaffoldImplantedByTeam]->(d)
+CREATE (b)-[r2:scaffoldImplantationMethod]->(c)
+
