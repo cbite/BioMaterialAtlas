@@ -5,7 +5,7 @@ var driver = neo4j.driver(
     neo4j.auth.basic(userName, password),
   )
 
-async function main(){
+async function main(searchTerm){
     try {
         await driver.verifyConnectivity();
         console.log('Driver created')
@@ -18,7 +18,7 @@ async function main(){
 try{
     var resultQuery=session
     .readTransaction((tx) => 
-       tx.run("MATCH (n) RETURN n")
+       tx.run("MATCH (n:"+searchTerm+") RETURN n")
     ).then(results => results.records.map((record) => {
        return {
               ID: record.get('n')
@@ -30,4 +30,4 @@ try{
 }
 }
 
-main()
+main(searchTerm='Document')
