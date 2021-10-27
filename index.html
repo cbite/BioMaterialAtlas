@@ -1,78 +1,98 @@
 <!doctype html>
 <html>
   <head>
-   <link rel="stylesheet" href="js/bootstrap/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  <body ng-controller='FirstController'>
+
    </head>
-   <body ng-app='BiomaterialAtlas'>
-    <div class="container-fluid display-table" >
-      <div class='row' style="color:red">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">BioMaterial Atlas</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
+   <body ng-app='BiomaterialAtlas' ng-controller='FirstController'>
+    <div class="container-fluid">
+      <div class="ods-box" ng-init="tabselector = 'Home'">
+            <div class='tabs'>
+              <a class="tab" ng-click="tabselector = 'Home'" ng-class="{'activetab' : tabselector == 'Home'}">Home</a>
+              <a class="tab" ng-click="tabselector = 'DataRepo'" ng-class="{'activetab' : tabselector == 'DataRepo'"}>Data repository</a>
+              <a class="tab" ng-click="tabselector = 'KnowledgeGraph'" ng-class="{'activetab' : tabselector == 'KnowledgeGraph'"}>Biomaterials Atlas graph</a>
+            </div>
+        </div>
+        <div class="ods-box">
+          <div ng-if="tabselector == 'Home'">
+            <div>
+              <!-- Home content for the Biomaterial Atlas-->
+              <p>
+
+              </p>
+
+
+            </div>
           </div>
-        </nav>      
-      </div>
-      <div class="row display-table-row">
-          <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
-            <div class="search hidden-xs hidden-sm">
-              <input type="text" placeholder="Search" id="search" ng-model='search'>
-          </div>
-              <div class="navi">
-                  <ul ng-repeat="data in dataset | filter:search">
-                      <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{data.Name}}</span></a></li>
-                  </ul>
+          <div ng-if="tabselector == 'DataRepo'">
+
+              <div class="row display-table-row">
+                  <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+                    <div class="search hidden-xs hidden-sm">
+                      <input type="text" placeholder="Search" id="search" ng-model='search'>
+                  </div>
+                      <div class="navi">
+                          <ul ng-repeat="data in dataset | filter:search">
+                              <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{data.Name}}</span></a></li>
+                          </ul>
+                      </div>
+                  </div> 
+                  <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                      <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+                      <div class="row" >
+                          <header>
+                              <div class="col-md-13" >
+                                <div class="card" style="width: 100%;">
+                                  <div class="card-body" ng-repeat="data in datasetFiltered">
+                                    <h5 class="card-title">Study description</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{data.name}}</h6>
+                                    <p class="card-text">
+                                      <app-info info='data'></app-info>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="row">
+                              <div class="col-md-6 ">
+                              <div class='card' style='width:100%'>
+                                <dataset-info info='datasetsSecondaryScreening'></dataset-info>
+                              </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="card" style="width: 100%;" ng-repeat="data in datasetFiltered"> 
+                                  <bar-plot info='data'></bar-plot>
+                                </div>
+                                <!-- fix the padding between two cards and not with adding a paragraph-->
+                                <div>
+                                  <p></p>
+                                </div>
+                                <div class="card" style="width:100% ">
+                                  <div class="card-body">
+                                    <image-info info='fileNames'></image-info>
+                                  </div>
+                                </div>
+                              <div>
+                                <p></p>
+        
+                              </div>
+                            </div>
+                          </header>
+                    
+        
+                  </div>
               </div>
-          </div> 
-          <div class="col-md-10 col-sm-11 display-table-cell v-align">
-              <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-              <div class="row" >
-                  <header>
-                      <div class="col-md-13" >
-                        <div class="card" style="width: 100%;">
-                          <div class="card-body" ng-repeat="data in datasetFiltered">
-                            <h5 class="card-title">Study description</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{data.name}}</h6>
-                            <p class="card-text">
-                              <app-info info='data'></app-info>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-                <div class="row">
-                      <div class="col-md-6 ">
-                      <div class='card' style='width:100%'>
-                        <dataset-info info='datasetsSecondaryScreening'></dataset-info>
-                      </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="card" style="width: 100%;" ng-repeat="data in datasetFiltered"> 
-                          <bar-plot info='data'></bar-plot>
-                        </div>
-                        <!-- fix the padding between two cards and not with adding a paragraph-->
-                        <div>
-                          <p></p>
-                        </div>
-                        <div class="card" style="width:100% ">
-                          <div class="card-body">
-                            <image-info info='fileNames'></image-info>
-                          </div>
-                        </div>
-                      <div>
-                        <p></p>
-
-                      </div>
-                    </div>
-                  </header>
-            
-
+        
           </div>
+          </div>
+          <div ng-if="tabselector == 'KnowledgeGraph'">
+            Content of third tab
+          </div>
+        </div>
+    
       </div>
+  
 
-  </div>
+    
 
 
   <!-- Modules-->
