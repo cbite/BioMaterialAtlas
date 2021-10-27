@@ -4,10 +4,6 @@ var margin = {top: 10, right: 30, bottom: 40, left: 60},
     height = 400 - margin.top - margin.bottom;
 
 var allGroup = ["CD81", "Count"]
-
-
-
-
     d3.csv("data/data.csv").then(function(data) {
         data.forEach(function(d) {
             d.id = +d.id;
