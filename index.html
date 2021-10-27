@@ -55,7 +55,7 @@
                       <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{data.Name}}</span></a></li>
                   </ul>
               </div>
-          </div>
+          </div> 
           <div class="col-md-10 col-sm-11 display-table-cell v-align">
               <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
               <div class="row" >
@@ -73,6 +73,11 @@
                       </div>
                 </div>
                 <div class="row">
+                      <div class="col-md-6 ">
+                      <div class='card' style='width:100%'>
+                        <dataset-info info='datasetsSecondaryScreening'></dataset-info>
+                      </div>
+                      </div>
                       <div class="col-md-6">
                         <div class="card" style="width: 100%;" ng-repeat="data in datasetFiltered"> 
                           <bar-plot info='data'></bar-plot>
@@ -88,61 +93,8 @@
                         </div>
                       <div>
                         <p></p>
-                      </div>
-                      <!-- add the div for the barplot-->
-                      <div class='card' style="width:100%">
-                         <div class="cardbody">
-                           <h5 class='card-title'>Secondary screening</h5>
-                           <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.Name}}</h6>
-                            <p class="card-text">
-                              <p>Hepatocyte dedifferentiation: Log2(fold change) of CYP3A4</p>
-                              <div id="plotbardiv"></div>
-                            </p>
-                          </div>
-                      </div>
-                      </div>
-                      <div class="col-md-6 ">
-                        <div class='card' style='width:100%'>
-                          <dataset-info info='datasetsSecondaryScreening'></dataset-info>
-                        </div>
-                        <div>
-                          <p></p>
-                        </div>
-                        <!-- Card box for the raw images-->
-                        <div class="card" style="width:100% ">
-                          <div class="card-body">
-                            <h5 class="card-title">Raw images</h5>
-                            <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
-                            <p>Images per channel: 4356, total images per chip: 10368, Total images in screen: 103680</p>
 
-                          </div>
                       </div>
-                      <div>
-                        <p></p>
-                      </div>
-                      <!-- Card box for the segmentation images-->
-                      <div class="card" style="width:100%">
-                        <div class="card-body">
-                          <h5 class="card-title">Segmentation images</h5>
-                          <h6 class="card-subtitle mb-2 text-muted" ng-repeat='data in datasetFiltered'>{{data.name}}</h6>
-                          <div class="row">
-                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                                <h5>DAPI channel</h5>
-                                <img src="images/segmentation1.png" alt="" class="img-responsive center-block" class="img-thumbnail"/>
-                            </div>
-                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0"> 
-                                <h5>TRITC channel</h5>
-                                <img src="images/segmentation2.png" class="img-responsive center-block"  class="img-thumbnail" />
-                            </div>
-                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                                <h5>FITC channel</h5>          
-                                <img src="images/segmentation3.png" class="img-responsive center-block"  class="img-thumbnail"/>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-
- 
                     </div>
                   </header>
             
