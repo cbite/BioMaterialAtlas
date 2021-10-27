@@ -3,36 +3,6 @@
   <head>
    <link rel="stylesheet" href="js/bootstrap/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  <body ng-controller='FirstController'>
    </head>
-
-   <div class="container-fluid">
-    <div class="ods-box" ng-init="tabselector = 'Home'">
-  
-      <div>
-        <a class="tab" ng-click="tabselector = 'Home'">Home</a>
-        <a class="tab" ng-click="tabselector = 'Repository'">Data repository</a>
-        <a class="tab" ng-click="tabselector = 'KnowledgeGraph'">Biomaterials Knowledge graph</a>
-      </div>
-  
-      <div class="ods-box">
-        <div ng-if="tabselector == 'Home'">
-          Content of first tab
-        </div>
-        <div ng-if="tabselector == 'Repository'">
-          Content of second tab
-        </div>
-        <div ng-if="tabselector == 'KnowledgeGraph'">
-          Content of third tab
-        </div>
-      </div>
-  
-    </div>
-  </div>
-
-
-
-
-
-
    <body ng-app='BiomaterialAtlas'>
     <div class="container-fluid display-table" >
       <div class='row' style="color:red">
@@ -110,9 +80,9 @@
   <script src="js/angularjs/angular-resource.js"></script>
   <script src='js/jquery/jquery.js'></script>
   <script src="js/bootstrap/bootstrap.bundle.js" ></script>
-  <!-- <script src="js/d3js/d3.min.js"></script>
+  <script src="js/d3js/d3.min.js"></script>
   <script src="js/d3barplot.js"></script>
-  <script src="js/d3rankplot.js"></script> -->
+  <script src="js/d3rankplot.js"></script>
   <!-- Controllers-->
   <script src='js/controllers/myApp.js'></script>
   <!-- Services-->
@@ -120,7 +90,7 @@
   <!-- directives -->
   <script src="js/directives/appInfo.js"></script>
   <script src="js/directives/datasetInfo.js"></script>
-  <!-- <script src='js/directives/barPlot.js'></script> -->
+  <script src='js/directives/barPlot.js'></script>
   <script src='js/directives/imageInfo.js'></script>
   <link rel="stylesheet" href="css/style.css">
   </body>
