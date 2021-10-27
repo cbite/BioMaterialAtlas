@@ -14,15 +14,19 @@ async function main(){
     }
 
 
-const session = driver.rxSession({database:'system'})
+    const session = driver.session({database: 'neo4j'});
 try{
-    var result = session.run('MATCH (n) RETURN n')
-    console.log('query executed')
-    console.log()
+    var resultQuery=session
+    .readTransaction((tx) => 
+       tx.run("MATCH (n) RETURN n")
+    ).then(results => results.records.map((record) => {
+       return {
+              ID: record.get('n')
+       }
+    }))
+    console.log(resultQuery)
 }catch(error){
-    console.log('Unable to execute query')
-}finally{
- await session.close()
+    console.log('Unable to execute query');
 }
 }
 
