@@ -1,16 +1,22 @@
 <!doctype html>
 <html>
   <head>
+    <style>
+          .divplot {
+      height: 7000px;
+      width: 80%;
+    }
+    </style>
+
    </head>
    <body>
     <h1>TEST environment</h1>
-    <dcanvas id='plotareagraph'>
-
-    </canvas>
+    <div class='divplot' id='plotareagraph' width:500px height:500px></div>
    </body>
+   <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
 <script src="https://unpkg.com/neo4j-driver"></script>
 <script src="https://cdn.jsdelivr.net/npm/neosig@1.2.2/docs/neosig-1.2.2.js"></script>
 
-<script src='js/neo4j-js-driver/loadNeo4jData.js'></script>
-<script src='js/neo4j-js-driver/loadGraph.js'></script>
+<!--<script src='js/neo4j-js-driver/loadNeo4jData.js'></script> -->
+<script src='js/neo4j-js-driver/loadGraphNeoVis.js'></script>
 </html>
