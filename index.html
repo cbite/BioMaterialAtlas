@@ -5,11 +5,11 @@
    </head>
    <body ng-app='BiomaterialAtlas' ng-controller='FirstController'>
     <div class="container-fluid">
-      <div class="ods-box" ng-init="tabselector = 'Home'">
+       <div class="ods-box" ng-init="tabselector = 'Home'">
             <div class='tabs'>
               <a class="tab" ng-click="tabselector = 'Home'" ng-class="{'activetab' : tabselector == 'Home'}">Home</a>
-              <a class="tab" ng-click="tabselector = 'DataRepo'" ng-class="{'activetab' : tabselector == 'DataRepo'"}>Data repository</a>
-              <a class="tab" ng-click="tabselector = 'KnowledgeGraph'" ng-class="{'activetab' : tabselector == 'KnowledgeGraph'"}>Biomaterials Atlas graph</a>
+              <a class="tab" ng-click="tabselector = 'DataRepo'" ng-class="{'activetab' : tabselector == 'DataRepo'}">Data repository</a>
+              <a class="tab" ng-click="tabselector = 'KnowledgeGraph'" ng-class="{'activetab' : tabselector == 'KnowledgeGraph'}">Biomaterials Atlas graph</a>
             </div>
         </div>
         <div class="ods-box">
@@ -24,12 +24,11 @@
             </div>
           </div>
           <div ng-if="tabselector == 'DataRepo'">
-
-              <div class="row display-table-row">
+            <div class="row display-table-row">
                   <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
-                    <div class="search hidden-xs hidden-sm">
-                      <input type="text" placeholder="Search" id="search" ng-model='search'>
-                  </div>
+                      <div class="search hidden-xs hidden-sm">
+                        <input type="text" placeholder="Search" id="search" ng-model='search'>
+                      </div>
                       <div class="navi">
                           <ul ng-repeat="data in dataset | filter:search">
                               <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{data.Name}}</span></a></li>
@@ -51,50 +50,48 @@
                                   </div>
                                 </div>
                               </div>
-                        </div>
-                        <div class="row">
-                              <div class="col-md-6 ">
-                              <div class='card' style='width:100%'>
-                                <dataset-info info='datasetsSecondaryScreening'></dataset-info>
-                              </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="card" style="width: 100%;" ng-repeat="data in datasetFiltered"> 
-                                  <bar-plot info='data'></bar-plot>
-                                </div>
-                                <!-- fix the padding between two cards and not with adding a paragraph-->
-                                <div>
-                                  <p></p>
-                                </div>
-                                <div class="card" style="width:100% ">
-                                  <div class="card-body">
-                                    <image-info info='fileNames'></image-info>
-                                  </div>
-                                </div>
-                              <div>
-                                <p></p>
-        
-                              </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6 ">
+                            <div class='card' style='width:100%'>
+                              <dataset-info info='datasetsSecondaryScreening'></dataset-info>
                             </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card" style="width: 100%;" ng-repeat="data in datasetFiltered"> 
+                                <bar-plot info='data'></bar-plot>
+                            </div>
+                            <div>
+                              <p></p>
+                            </div>
+                            <div class="card" style="width:100% ">
+                                <div class="card-body">
+                                  <show-images info='RawImages'></show-images>
+                                </div>
+                            </div>
+                          </div>                      
+                      </div>
                           </header>
-                    
-        
                   </div>
               </div>
-        
-          </div>
-          </div>
+            </div>
+          </div>           <!-- End div for the datarepo tab-->
+
           <div ng-if="tabselector == 'KnowledgeGraph'">
-            <div class='divgraph' id='plotareagraph'></div>
+              <h1>TEST environment</h1>
+              <div class='.divgraph' id='plotareagraph'></div>
           </div>
-        </div>
+        </div> <!-- this ends to odsbox-->
     
-      </div>
+      </div> <!-- this ends the container fluid div-->
   
 
     
 
-
+  <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+  <script src="https://unpkg.com/neo4j-driver"></script>      
+  <!--<script src='js/neo4j-js-driver/loadNeo4jData.js'></script> -->
+  <script src='js/neo4j-js-driver/loadGraphNeoVis.js'></script>
   <!-- Modules-->
   <script src="js/angularjs/angular.js"></script>
   <script src="js/angularjs/angular-resource.js"></script>
@@ -112,6 +109,7 @@
   <script src="js/directives/datasetInfo.js"></script>
   <script src='js/directives/barPlot.js'></script>
   <script src='js/directives/imageInfo.js'></script>
+  <script src='js.directives/showImages.js'></script>
   <link rel="stylesheet" href="css/style.css">
   </body>
 </html>

@@ -1,0 +1,9 @@
+app.directive(showImages,function(){
+    return{
+        restrict:'E',
+        scope:{
+            info:'=',
+        },
+        templateUrl:'js/directives/showRawImages.html'
+    }
+})

@@ -5,9 +5,10 @@ h1 {
 	color:black
 }
 
-.divgraph{
-  width:100%;
-  height: 200px;
+divgraph{
+  width:100px;
+  height:400px;
+  outline: 1px dashed red;
 }
 
 .row-top{

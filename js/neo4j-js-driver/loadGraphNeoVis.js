@@ -21,5 +21,7 @@ var config = {
     initial_cypher: "MATCH (n)-[r]->(m) RETURN n,r,m"
 };
 
+
 viz = new NeoVis.default(config);
+
 viz.render();

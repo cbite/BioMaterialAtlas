@@ -1,6 +1,6 @@
 var app = angular.module('myApp', []);
 app.controller('FirstController', function($http,$scope) {
-    $http.get('data/BioMaterialAtlas_StudyInformation.json').then(function (response) {
+    $http.get('data/BioMaterialAtlas_StudyInformationTopoChip.json').then(function (response) {
 
         var data = response.data;
         var status = response.status;
@@ -12,9 +12,13 @@ app.controller('FirstController', function($http,$scope) {
         $scope.dataset = data;
     
     $scope.selectData=function(){
+        console.log('function called')
         $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == this.data.Name);
         $scope.fileNames=$scope.getSource($scope.datasetFiltered.selectedsurfaces);
-
+        $scope.RawImages=$scope.defineRawImages();
+        console.log($scope.RawImages)
+        $scope.SegmentationImages=$scope.defineSegmentationImages();
+        $scope.secondaryScreenInfo=$scope.defineSecondaryScreening();
         ;}
     
     $scope.getSource=function(){
@@ -33,9 +37,28 @@ app.controller('FirstController', function($http,$scope) {
             }
             return secondaryScreens
     }
+    $scope.defineRawImages=function(){
+        tmp_images_screen=$scope.datasetFiltered.RawImages.split(',')
+        var RawImages=[];
+        for(x in tmp_images_screen){
+            RawImages.push({x})
+        }
+        console.log(RawImages)
+        return RawImages
+    }
+    $scope.defineSegmentationImages=function(){
+        tmp_segm_images=$scope.datasetFiltered.split(',')
+        var SegmentationImages=[];
+        for(x in tmp_segm_images){
+            SegmentationImages.push({x})
+        }
+        return SegmentationImages
+    }
     $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == 'Hepatocytes');
     $scope.secondaryScreenInfo=$scope.defineSecondaryScreening();
-    console.log($scope.secondaryScreenInfo)
+    $scope.RawImages=$scope.defineRawImages();
+    $scope.SegmentationImages=$scope.defineSegmentationImages();
+    console.log($scope.RawImages)
     //$scope.fileNames=$scope.getSource($scope.datasetFiltered[0].selectedsurfaces);
 
     });
