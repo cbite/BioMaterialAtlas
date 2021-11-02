@@ -1,4 +1,4 @@
-app.directive(showImages,function(){
+app.directive('showImages',function(){
     return{
         restrict:'E',
         scope:{

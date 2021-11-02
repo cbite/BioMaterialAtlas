@@ -1,7 +1,7 @@
 var app = angular.module('BiomaterialAtlas',[]);
 app.controller('FirstController', function($scope,getData) {
     $scope.dataisLoaded=false;
-    $scope.loadedData=getData.getjson('data/BioMaterialAtlas_StudyInformation.json');
+    $scope.loadedData=getData.getjson('data/BioMaterialAtlas_StudyInformationTopoChip.json');
     $scope.loadedDataHeartvalves=getData.getjson("data/BioMaterialAtlas_StudyInformationHeartValves.json");
     $scope.loadedData.then(function(data){
         // load the data to the dataset in scope
@@ -12,6 +12,8 @@ app.controller('FirstController', function($scope,getData) {
         $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == this.data.Name);
         $scope.getSource($scope)
         $scope.defineSecondaryScreening($scope)
+        $scope.RawImages=$scope.defineRawImages($scope);
+        $scope.SegmentationImages=$scope.defineSegmentationImages($scope);
         ;}
 
         $scope.getSource=function($scope){
@@ -28,14 +30,24 @@ app.controller('FirstController', function($scope,getData) {
                 $scope.datasetsSecondaryScreening = tmp_secondary_screens
 
         }
-        $scope.defineRawImages=function(){
-            // take the raw images for the selected surfaces to compare
-            tmp_secondary_screens=$scope.datasetFiltered[0].SecondaryScreening.split(';')
-            // tale the channels used in the screen
 
+        $scope.defineRawImages=function($scope){
+            RawImages=$scope.datasetFiltered[0].RawImages.split(',')
+            console.log(RawImages)
+            return RawImages
+        }
+        $scope.defineSegmentationImages=function($scope){
+            tmp_segm_images=$scope.datasetFiltered[0].SegmentationImages.split(',')
+            var SegmentationImages=[];
+            for(x in tmp_segm_images){
+                SegmentationImages.push({x})
+            }
+            return SegmentationImages
         }
         $scope.defineSecondaryScreening($scope)
         $scope.getSource($scope)
+        $scope.RawImages=$scope.defineRawImages($scope);
+        $scope.SegmentationImages=$scope.defineSegmentationImages($scope);
        
     })
   /*

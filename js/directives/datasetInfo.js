@@ -3,7 +3,8 @@ app.directive('datasetInfo', function() {
       restrict: 'E', 
       scope: { 
         info: '=', 
-      }, 
+      },     
+
       templateUrl: 'js/directives/datasetInfo.html',
 
     }
