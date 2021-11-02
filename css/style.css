@@ -5,6 +5,10 @@ h1 {
 	color:black
 }
 
+.divgraph{
+  width:100%;
+  height: 200px;
+}
 
 .row-top{
 	background-color: red;
@@ -76,11 +80,7 @@ ul li p{
 }
 
 
-/*Main CSS*/
 
-
-
-/*Home Page*/
 
 
 #navigation {
