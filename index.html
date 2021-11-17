@@ -29,8 +29,8 @@
                       <div class="search hidden-xs hidden-sm">
                         <input type="text" placeholder="Search" id="search" ng-model='search'>
                       </div>
-                      <div class="navi">
-                          <ul ng-repeat="data in dataset | filter:search">
+                      <div class="navi-data">
+                          <ul  ng-repeat="data in dataset | filter:search">
                               <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{data.Name}}</span></a></li>
                           </ul>
                       </div>

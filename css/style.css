@@ -228,41 +228,36 @@ header {
     text-align: center;
 }
 
-.navi a {
-    border-bottom: 1px solid grey;
-    border-top: 1px solid grey;
-    border-right: 1px solid grey;
-    border-left: 1px solid grey;
-    color: #ffffff;
-    display: block;
-    font-size: 17px;
-    font-weight: 500;
-    padding: 10px;
-    text-decoration: none;
+.navi-data ul{
+  display: inline;
+  justify-content: space-between;
+  align-items: left;
+  margin-bottom: 0px;
+  list-style: none;
 }
 
-.navi i {
-    margin-right: 5px;
-    color: #5584ff;
-}.navi i {
-    margin-right: 5px;
-    color: #5584ff;
+.navi-data li {
+  display:left;
+  width: 300px;
+  height: 30px;
+  margin: 0 0 0 0;
+  background:white;
+  font-size: 18px;
+  color: #333;
+  padding: 1 0 0 0;
+  text-decoration: none;
+  outline: 3px solid black;
 }
 
-.navi .active a {
-    /* color when mouseover on the area */
-    background: white;
-    border-left: 5px solid;
-    color:black;
+.navi-data li a{
+  display: block;
+  color:black;
+  text-decoration: none;
+  align-items: center;
 }
 
-.navi a:hover {
-    background: whitesmoke none repeat scroll 0 0;
-    border-left: 5px solid #5584ff;
-    display: block;
-    padding-left: 15px;
-    color:black;
-}
+
+
 
 
 
