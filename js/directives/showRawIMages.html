@@ -1,15 +1,7 @@
-<div class="row"  ng-repeat='image in info track by $index' ng-if="$index%3==0">
-    <div class='column'>
-        <h4>Image name: {{info[$index]}}</h4>     
-        <img ng-src="images/TopoChipRawImages/{{info[$index]}}" style="height:300px;width:300px" />
-    </div>
-    <div class='column'>
-        <h4>Image name: {{info[$index+1]}}</h4>     
-        <img ng-src="images/TopoChipRawImages/{{info[$index+1]}}" style="height:300px;width:300px" />
-    </div>
-    <div class='column'>
-            <h4>Image name: {{info[$index+2]}}</h4>     
-            <img ng-src="images/TopoChipRawImages/{{info[$index+2]}}" style="height:300px;width:300px" />
-    </div>
+<div class='card-body'>
+    <h3 class='card-title'>Raw images</h5>
+    <img ng-src="images/TopoChipRawImages/{{info[$index]}}" ng-repeat='image in info track by $index' style="height:250px;width:250px;margin-right: 10px;" />
+    <div>
+    <label>{{info[$index]}}</label>
 </div>
-
+</div>
