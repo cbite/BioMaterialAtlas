@@ -1,4 +1,4 @@
-app.directive('barPlot', function() { 
+angular.module('barPlot', function() { 
     return { 
       restrict: 'E', 
       scope: { 
