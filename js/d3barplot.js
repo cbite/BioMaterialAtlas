@@ -7,8 +7,6 @@ var margin = {top: 10, right: 30, bottom: 40, left: 60},
     // append the svg object to the body of the page
 
 
-
-
 d3.csv("data/dataqpcr.csv").then(function(data) {
             data.forEach(function(d) {
                 d.geneid = d.Gene;

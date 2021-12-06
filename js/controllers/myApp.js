@@ -10,10 +10,12 @@ app.controller('FirstController', function($scope,getData) {
             $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == 'Hepatocytes'); 
             $scope.selectData=function(){
         $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == this.data.Name);
-        $scope.getSource($scope)
-        $scope.defineSecondaryScreening($scope)
+        // $scope.getSource($scope);
+
+        $scope.defineSecondaryScreening($scope);
         $scope.RawImages=$scope.defineRawImages($scope);
         $scope.SegmentationImages=$scope.defineSegmentationImages($scope);
+        $scope.studyDescription=$scope.defineStudyDescription($scope)
         ;}
 
         $scope.getSource=function($scope){
@@ -24,7 +26,8 @@ app.controller('FirstController', function($scope,getData) {
                 }
                 $scope.fileNames=images
             }
-            $scope.getSource($scope)   
+            //$scope.getSource($scope)   
+        
         $scope.defineSecondaryScreening=function($scope){
                 tmp_secondary_screens=$scope.datasetFiltered[0].SecondaryScreening.split(';')
                 $scope.datasetsSecondaryScreening = tmp_secondary_screens
@@ -38,17 +41,27 @@ app.controller('FirstController', function($scope,getData) {
         }
         $scope.defineSegmentationImages=function($scope){
             tmp_segm_images=$scope.datasetFiltered[0].SegmentationImages.split(',')
-            var SegmentationImages=[];
-            for(x in tmp_segm_images){
-                SegmentationImages.push({x})
-            }
-            return SegmentationImages
+            return tmp_segm_images
+        }
+
+        $scope.defineStudyDescription=function($scope){
+            
+            tmp_studyDescription=$scope.datasetFiltered[0].StudyDescription.split(';')
+            let tmp_studyDescriptiontry={};
+            tmp_studyDescription.forEach(element =>{
+                // element consits of key and value separated by : 
+                var key=element.split(':')[0];
+                var value=element.split(':')[1];
+                tmp_studyDescriptiontry[key]=value;
+            })
+            return tmp_studyDescriptiontry
         }
         $scope.defineSecondaryScreening($scope)
-        $scope.getSource($scope)
+        //$scope.getSource($scope)
         $scope.RawImages=$scope.defineRawImages($scope);
         $scope.SegmentationImages=$scope.defineSegmentationImages($scope);
-       
+        $scope.studyDescription=$scope.defineStudyDescription($scope)
+
     })
   /*
     // load heart valve studies to scope
