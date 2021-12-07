@@ -1,5 +1,5 @@
 var app = angular.module('BiomaterialAtlas',[]);
-app.controller('FirstController', function($scope,getData) {
+app.controller('FirstController', function($scope,getData,d3Service) {
     $scope.dataisLoaded=false;
     $scope.loadedData=getData.getjson('data/BioMaterialAtlas_StudyInformationTopoChip.json');
     $scope.loadedDataHeartvalves=getData.getjson("data/BioMaterialAtlas_StudyInformationHeartValves.json");
@@ -35,8 +35,14 @@ app.controller('FirstController', function($scope,getData) {
         }
 
         $scope.defineRawImages=function($scope){
-            RawImages=$scope.datasetFiltered[0].RawImages.split(',')
+            if($scope.datasetFiltered[0].RawImages !==null){
+               RawImages=$scope.datasetFiltered[0].RawImages.split(',')
+
+            }else{
+                RawImages=[]
+            }
             console.log(RawImages)
+            console.log(RawImages.length)
             return RawImages
         }
         $scope.defineSegmentationImages=function($scope){

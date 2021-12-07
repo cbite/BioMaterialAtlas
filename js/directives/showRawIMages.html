@@ -1,5 +1,4 @@
-<div class='card-body'>
-    <h3 class='card-title'>Raw images</h5>
+<div ngif="info.length>0" class='card-body'>
     <img ng-src="images/TopoChipRawImages/{{info[$index]}}" ng-repeat='image in info track by $index' style="height:250px;width:250px;margin-right: 10px;" />
     <div>
     <label>{{info[$index]}}</label>

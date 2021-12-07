@@ -69,8 +69,8 @@
                            <p></p>
                           
                           <div class='col-md-6 col-sm-11 display-table-cell v-align'>
-                            <div class="card" style="width:100% ">
-                                <div class="card-body">
+                            <div ngif="RawImages.length>0" class="card" style="width:100% ">
+                                <div  class="card-body">
                                   <show-images info='RawImages'></show-images>
                                 </div>
                             </div>
@@ -101,7 +101,6 @@
   <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
   <script src="https://unpkg.com/neo4j-driver"></script>      
   <!--<script src='js/neo4j-js-driver/loadNeo4jData.js'></script> -->
-
   <!-- Modules-->
   <script src="js/angularjs/angular.js"></script>
   <script src="js/angularjs/angular-resource.js"></script>
@@ -110,11 +109,12 @@
   <script src="js/d3js/d3.min.js"></script>
   <script src="js/d3barplot.js"></script>
   <script src="js/d3rankplot.js"></script>
-  <script src='js/neo4j-js-driver/loadGraphNeoVis.js'></script>
+ <!--  <script src='js/neo4j-js-driver/loadGraphNeoVis.js'></script> -->
   <!-- Controllers-->
   <script src='js/controllers/myApp.js'></script>
   <!-- Services-->
   <script src="js/factory/getData.js"></script>
+  <script src="js/factory/d3Service.js"></script>
   <!-- directives -->
   <script src="js/directives/appInfo.js"></script>
   <script src="js/directives/datasetInfo.js"></script>
