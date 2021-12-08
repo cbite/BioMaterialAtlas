@@ -15,7 +15,8 @@ app.controller('FirstController', function($scope,getData,d3Service) {
         $scope.defineSecondaryScreening($scope);
         $scope.RawImages=$scope.defineRawImages($scope);
         $scope.SegmentationImages=$scope.defineSegmentationImages($scope);
-        $scope.studyDescription=$scope.defineStudyDescription($scope)
+        $scope.studyDescription=$scope.defineStudyDescription($scope);
+        $scope.dataStudyDesign=$scope.defineStudyDesign($scope)
         ;}
 
         $scope.getSource=function($scope){
@@ -34,6 +35,19 @@ app.controller('FirstController', function($scope,getData,d3Service) {
 
         }
 
+        $scope.defineStudyDesign=function($scope){
+            tmp_studyDesign=$scope.datasetFiltered[0].StudyDesign.split(';')
+            let tmp_studyDesignDict={};
+            tmp_studyDesign.forEach(element =>{
+                // element consits of key and value separated by : 
+                var key=element.split(':')[0];
+                var value=element.split(':')[1];
+                tmp_studyDesignDict[key]=value;
+            })
+            console.log(tmp_studyDesignDict)
+            return tmp_studyDesignDict
+           
+        }
         $scope.defineRawImages=function($scope){
             if($scope.datasetFiltered[0].RawImages !==null){
                RawImages=$scope.datasetFiltered[0].RawImages.split(',')
@@ -41,8 +55,6 @@ app.controller('FirstController', function($scope,getData,d3Service) {
             }else{
                 RawImages=[]
             }
-            console.log(RawImages)
-            console.log(RawImages.length)
             return RawImages
         }
         $scope.defineSegmentationImages=function($scope){
@@ -64,6 +76,7 @@ app.controller('FirstController', function($scope,getData,d3Service) {
         }
         $scope.defineSecondaryScreening($scope)
         //$scope.getSource($scope)
+        $scope.dataStudyDesign=$scope.defineStudyDesign($scope)
         $scope.RawImages=$scope.defineRawImages($scope);
         $scope.SegmentationImages=$scope.defineSegmentationImages($scope);
         $scope.studyDescription=$scope.defineStudyDescription($scope)

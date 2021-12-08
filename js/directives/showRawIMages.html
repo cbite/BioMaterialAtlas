@@ -1,6 +1,9 @@
 <div ngif="info.length>0" class='card-body'>
+    <figure>
     <img ng-src="images/TopoChipRawImages/{{info[$index]}}" ng-repeat='image in info track by $index' style="height:250px;width:250px;margin-right: 10px;" />
+    <figcaption>{{info[$index]}}</figcaption>
+    </figure>
     <div>
-    <label>{{info[$index]}}</label>
+
 </div>
 </div>
