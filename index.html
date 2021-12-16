@@ -32,8 +32,8 @@
                         <input type="text" placeholder="Search" id="search" ng-model='search'>
                       </div>
                       <div class="navi-data">
-                          <ul  ng-repeat="data in dataset | filter:search">
-                              <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{data.Name}}</span></a></li>
+                          <ul>
+                              <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{dataStudyDescription.Name}}</span></a></li>
                           </ul>
                       </div>
                   </div> 
@@ -42,13 +42,7 @@
                       <div class="row" >
                               <div class="col-md-13" >
                                 <div class="card" style="width: 100%;">
-                                  <div class="card-body" ng-repeat="data in datasetFiltered">
-                                    <h2 class="card-title">Study description</h5>
-                                    <h3 class="card-subtitle mb-2 text-muted">{{data.name}}</h6>
-                                    <p class="card-text">
-                                      <app-info info='studyDescription'></app-info>
-                                    </p>
-                                  </div>
+                                    <app-info info='dataStudyDescription'></app-info>
                                 </div>
                               </div>
                       <!-- end of the row for the study description-->                                                      
@@ -56,12 +50,6 @@
                       <div><p></p></div>
                       <div class="row">
                           <div class="col-md-4 col-sm-11 display-table-cell v-align">
-                            <div class='card' style='width:100%'>
-                              <dataset-info info='datasetsSecondaryScreening'></dataset-info>
-                            </div>
-                            <div>
-                              <p></p>
-                            </div>
                             <div class='card' style='width:100%'>
                               <study-design info="dataStudyDesign"></study-design>
                             </div>

@@ -1,115 +1,32 @@
 var app = angular.module('BiomaterialAtlas',[]);
 app.controller('FirstController', function($scope,getData,d3Service) {
     $scope.dataisLoaded=false;
-    $scope.loadedData=getData.getjson('data/BioMaterialAtlas_StudyInformationTopoChip.json');
+    $scope.loadedData=getData.getjson('data/ALP_BMA_json.json');
     $scope.loadedDataHeartvalves=getData.getjson("data/BioMaterialAtlas_StudyInformationHeartValves.json");
     $scope.loadedData.then(function(data){
         // load the data to the dataset in scope
-            $scope.dataset=data.data;
-            $scope.dataisLoaded=true;
-            $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == 'Hepatocytes'); 
-            $scope.selectData=function(){
-        $scope.datasetFiltered=$scope.dataset.filter(dataset => dataset.Name == this.data.Name);
-        // $scope.getSource($scope);
-
-        $scope.defineSecondaryScreening($scope);
-        $scope.RawImages=$scope.defineRawImages($scope);
-        $scope.SegmentationImages=$scope.defineSegmentationImages($scope);
-        $scope.studyDescription=$scope.defineStudyDescription($scope);
+        $scope.data=data.data;
+        $scope.dataisLoaded=true;
+        $scope.dataStudyDescription=$scope.defineStudyDescription($scope);
         $scope.dataStudyDesign=$scope.defineStudyDesign($scope)
-        ;}
+        console.log($scope.dataStudyDescription.Name)
+        ;})
 
-        $scope.getSource=function($scope){
-                sub_images=$scope.datasetFiltered[0].SelectedSurfaces.split(',');
-                var images=[];
-                for(x in sub_images){
-                images.push({imagename:sub_images[x],imagefile:'images/TopoImages/Surface_FeatureIdx_'+sub_images[x]+'.png'});
-                }
-                $scope.fileNames=images
-            }
-            //$scope.getSource($scope)   
-        
-        $scope.defineSecondaryScreening=function($scope){
+    $scope.defineSecondaryScreening=function($scope){
                 tmp_secondary_screens=$scope.datasetFiltered[0].SecondaryScreening.split(';')
                 $scope.datasetsSecondaryScreening = tmp_secondary_screens
 
         }
 
-        $scope.defineStudyDesign=function($scope){
-            tmp_studyDesign=$scope.datasetFiltered[0].StudyDesign.split(';')
-            let tmp_studyDesignDict={};
-            tmp_studyDesign.forEach(element =>{
-                // element consits of key and value separated by : 
-                var key=element.split(':')[0];
-                var value=element.split(':')[1];
-                tmp_studyDesignDict[key]=value;
-            })
-            console.log(tmp_studyDesignDict)
-            return tmp_studyDesignDict
-           
-        }
-        $scope.defineRawImages=function($scope){
-            if($scope.datasetFiltered[0].RawImages !==null){
-               RawImages=$scope.datasetFiltered[0].RawImages.split(',')
-
-            }else{
-                RawImages=[]
-            }
-            return RawImages
-        }
-        $scope.defineSegmentationImages=function($scope){
-            tmp_segm_images=$scope.datasetFiltered[0].SegmentationImages.split(',')
-            return tmp_segm_images
+    $scope.defineStudyDesign=function($scope){
+            // JSOn file has a field called Design
+            StudyDesign=$scope.data.Design; 
+            return StudyDesign;
         }
 
-        $scope.defineStudyDescription=function($scope){
-            
-            tmp_studyDescription=$scope.datasetFiltered[0].StudyDescription.split(';')
-            let tmp_studyDescriptiontry={};
-            tmp_studyDescription.forEach(element =>{
-                // element consits of key and value separated by : 
-                var key=element.split(':')[0];
-                var value=element.split(':')[1];
-                tmp_studyDescriptiontry[key]=value;
-            })
-            return tmp_studyDescriptiontry
+    $scope.defineStudyDescription=function($scope){
+            StudyDescription=$scope.data.Description;
+            return StudyDescription;
         }
-        $scope.defineSecondaryScreening($scope)
-        //$scope.getSource($scope)
-        $scope.dataStudyDesign=$scope.defineStudyDesign($scope)
-        $scope.RawImages=$scope.defineRawImages($scope);
-        $scope.SegmentationImages=$scope.defineSegmentationImages($scope);
-        $scope.studyDescription=$scope.defineStudyDescription($scope)
 
     })
-  /*
-    // load heart valve studies to scope
-    $scope.loadedDataHeartvalves.then(function(data2){ 
-        $scope.datasetheart=data2.data;
-        $scope.datasetFilteredHeart=$scope.datasetheart.filter(datasetheart => datasetheart.Name == 'In situ tissue engineered heart valves (iValve II - LSH)'); 
-        console.log('dit is hart gefilterd')
-        console.log($scope.datasetFilteredHeart)
-        $scope.selectData=function(){
-            $scope.datasetFilteredHeart=$scope.datasetheart.filter(datasetheart => datasetheart.Name ==this.data.Name);
-            $scope.getSourceHeartImages($scope)
-        };
-        
-
-
-        $scope.getSourceHeartImages=function($scope){
-            images_file=$scope.datasetFilteredHeart[0].ImageScaffold.split(';');
-            images_name=$scope.datasetFilteredHeart[0].ImageScaffoldName.split(';');
-            image_design=$scope.datasetFilteredHeart[0].ImageDesign.split(';');
-            var images=[];
-            for(x in images_file){
-                console.log(x)
-            images.push({imagename:images_name[x],imagefile:'images/HeartValves/'+images_file[x]+'.png',image_design:'images/HeartValves/'+images_file[x]+'_scheme.png'});
-            }
-            $scope.fileNamesHeart=images
-            console.log($scope.fileNamesHeart)
-        }
-        $scope.getSourceHeartImages($scope)
-    })
-*/
-});
-
