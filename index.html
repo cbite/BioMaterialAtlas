@@ -32,8 +32,8 @@
                         <input type="text" placeholder="Search" id="search" ng-model='search'>
                       </div>
                       <div class="navi-data">
-                          <ul>
-                              <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{dataStudyDescription.Name}}</span></a></li>
+                          <ul ng-repeat="name in data">
+                              <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{name.Description.Name}}</span></a></li>
                           </ul>
                       </div>
                   </div> 
