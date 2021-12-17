@@ -1,6 +1,10 @@
-<h3>Study Design</h3>
-<table style="width:100%"  style="border-collapse: collapse; border: none;">
-    <tr ng-repeat='(key,value) in info'>
-      <td><b>{{key}}</b></td><td>{{value}}</td>
-    </tr>
-  </table>
+<h4>Study experimental design</h4>
+<div class='card' style='width:100%' ng-repeat='(key,value) in info'>
+  <div class='card-body' >
+    <table style="width:100%"  style="border-collapse: collapse; border: none;" >
+      <tr>
+        <td><b>{{key}}</b></td><td>{{value}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

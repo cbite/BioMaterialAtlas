@@ -10,7 +10,7 @@ app.controller('FirstController', function($scope,getData,d3Service) {
         $scope.dataStudyDescription=$scope.defineStudyDescription($scope);
         $scope.dataStudyDesign=$scope.defineStudyDesign($scope);
         $scope.dataStudyResults=$scope.defineStudyResults($scope);
-        console.log($scope.dataStudyResults)
+        $scope.imagesToShow=$scope.defineImagesToShow($scope);
         ;})
 
     $scope.defineSecondaryScreening=function($scope){
@@ -35,6 +35,28 @@ app.controller('FirstController', function($scope,getData,d3Service) {
         StudyResults=$scope.data.Results;
         
         return StudyResults;
+    }
+
+    $scope.defineImagesToShow=function($scope){
+        // Data sheet contains a value for showImagesSurface
+        if($scope.data.Results.ImageForSurfaces){
+            var images= new Array();
+            const surface='Surface_FeatureIdx_'
+            // separate the image names based on comma separated 
+            const tmp_images=$scope.data.Results.ImagesStudyDesign.split(',')
+            // join '.png' to each elemenet
+            tmp_images.forEach(element =>{
+                var tmp_element=element.concat('.png')
+                var tmp_element_complete=surface.concat(tmp_element);
+                images.push(tmp_element_complete);
+            })
+            return images;
+        }
+        else{
+            // Should not plot any images thus return null object
+            var images = null;
+            return images;
+        }
     }
 
     })
