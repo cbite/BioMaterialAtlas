@@ -32,8 +32,8 @@
                         <input type="text" placeholder="Search" id="search" ng-model='search'>
                       </div>
                       <div class="navi-data">
-                          <ul  ng-repeat="data in dataset | filter:search">
-                              <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{data.Name}}</span></a></li>
+                          <ul ng-repeat="name in data">
+                              <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{name.Description.Name}}</span></a></li>
                           </ul>
                       </div>
                   </div> 
@@ -42,43 +42,33 @@
                       <div class="row" >
                               <div class="col-md-13" >
                                 <div class="card" style="width: 100%;">
-                                  <div class="card-body" ng-repeat="data in datasetFiltered">
-                                    <h2 class="card-title">Study description</h5>
-                                    <h3 class="card-subtitle mb-2 text-muted">{{data.name}}</h6>
-                                    <p class="card-text">
-                                      <app-info info='studyDescription'></app-info>
-                                    </p>
-                                  </div>
+                                    <app-info info='dataStudyDescription'></app-info>
                                 </div>
                               </div>
                       <!-- end of the row for the study description-->                                                      
                       </div>
                       <div><p></p></div>
                       <div class="row">
-                          <div class="col-md-6 col-sm-11 display-table-cell v-align">
-                            <div class='card' style='width:100%'>
-                              <dataset-info info='datasetsSecondaryScreening'></dataset-info>
-                            </div>
-                            <div>
-                              <p></p>
-                            </div>
+                          <div class="col-md-4 col-sm-11 display-table-cell v-align">
+                              <study-design info="dataStudyDesign"></study-design>
                             <div>
                               <bar-plot></bar-plot>
                             </div>
                           </div>
                            <p></p>
                           
-                          <div class='col-md-6 col-sm-11 display-table-cell v-align'>
-                            <div class="card" style="width:100% ">
-                                <div class="card-body">
-                                  <show-images info='RawImages'></show-images>
+                          <div class='col-md-8 col-sm-11 display-table-cell v-align'>
+                            <div  class="card" style="width:100% ">
+                                <div  class="card-body">
+                                  <app-info info='dataStudyResults'></app-info>
                                 </div>
                             </div>
-                            <div class="card" style="width:100% ">
-                              <div class="card-body">
-                                <show-images info='SegmentationImages'></show-images>
+                            <div class='card' style="width:100%">
+                              <div class='card-body'>
+                                <show-images info='imagesToShow'></show-images>
                               </div>
-                          </div>
+
+                            </div>
                           </div>
                         </div>                   
                       
@@ -101,7 +91,6 @@
   <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
   <script src="https://unpkg.com/neo4j-driver"></script>      
   <!--<script src='js/neo4j-js-driver/loadNeo4jData.js'></script> -->
-
   <!-- Modules-->
   <script src="js/angularjs/angular.js"></script>
   <script src="js/angularjs/angular-resource.js"></script>
@@ -110,17 +99,19 @@
   <script src="js/d3js/d3.min.js"></script>
   <script src="js/d3barplot.js"></script>
   <script src="js/d3rankplot.js"></script>
-  <script src='js/neo4j-js-driver/loadGraphNeoVis.js'></script>
+ <!--  <script src='js/neo4j-js-driver/loadGraphNeoVis.js'></script> -->
   <!-- Controllers-->
   <script src='js/controllers/myApp.js'></script>
   <!-- Services-->
   <script src="js/factory/getData.js"></script>
+  <script src="js/factory/d3Service.js"></script>
   <!-- directives -->
   <script src="js/directives/appInfo.js"></script>
   <script src="js/directives/datasetInfo.js"></script>
   <script src='js/directives/barPlot.js'></script>
   <script src='js/directives/imageInfo.js'></script>
   <script src='js/directives/showImages.js'></script>
+  <script src='js/directives/studyDesign.js'></script>
   <link rel="stylesheet" href="css/style.css">
   </body>
 </html>

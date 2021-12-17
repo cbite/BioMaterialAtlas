@@ -1,3 +1,4 @@
+function createRankPlot(){
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 40, left: 60},
     width = 460 - margin.left - margin.right,
@@ -10,6 +11,7 @@ var allGroup = ["CD81", "Count"]
             d.rank=+d.rank;
             d.Count=+d.Count;
             d.CD81=+d.CD81;
+            console.log(d)
           });
 
           // add the options to the button
@@ -137,3 +139,4 @@ var allGroup = ["CD81", "Count"]
             update(selectedOption)
         })
 })
+}
