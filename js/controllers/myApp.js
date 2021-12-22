@@ -2,7 +2,6 @@ var app = angular.module('BiomaterialAtlas',[]);
 app.controller('FirstController', function($scope,getData,d3Service) {
     $scope.dataisLoaded=false;
     $scope.loadedData=getData.getjson('data/BioMaterialAtlas.json');
-    $scope.loadedDataHeartvalves=getData.getjson("data/BioMaterialAtlas_StudyInformationHeartValves.json");
     $scope.loadedData.then(function(data){
         // load the data to the dataset in scope
         $scope.data=data.data;
@@ -59,11 +58,10 @@ app.controller('FirstController', function($scope,getData,d3Service) {
 
     $scope.defineImagesToShow=function($scope){
         // Data sheet contains a value for showImagesSurface
-        console.log($scope.datasetSelected);
-        console.log($scope.datasetSelected.Results.ImageForSurfaces);
+        var images= new Array();
+        console.log($scope.datasetSelected.Results)
         if($scope.datasetSelected.Results.ImageForSurfaces){
-            console.log('Update the images')
-            var images= new Array();
+            // Images are from TopoChip studies
             const surface='Surface_FeatureIdx_'
             // separate the image names based on comma separated 
             const tmp_images=$scope.datasetSelected.Results.ImagesStudyDesign.split(',')
@@ -74,6 +72,14 @@ app.controller('FirstController', function($scope,getData,d3Service) {
                 images.push(tmp_element_complete);
             })
             return images;
+        }
+        else if($scope.datasetSelected.Results.ImageOfValves){
+            const tmp_images=$scope.datasetSelected.Results.ImageStudyDesign.split(',')
+            tmp_images.forEach(element=>{
+                images.push(element)
+            })
+            return images
+            //  Images to show are from heat valve studies
         }
         else{
             // Should not plot any images thus return null object
