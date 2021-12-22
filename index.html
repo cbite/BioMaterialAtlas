@@ -42,15 +42,21 @@
                       <div class="row" >
                               <div class="col-md-13" >
                                 <div class="card" style="width: 100%;">
+                                  <div class='card-body'>
                                     <app-info info='dataStudyDescription'></app-info>
                                 </div>
+                              </div>
                               </div>
                       <!-- end of the row for the study description-->                                                      
                       </div>
                       <div><p></p></div>
                       <div class="row">
                           <div class="col-md-4 col-sm-11 display-table-cell v-align">
+                            <div  class="card" style="width:100% ">
+                              <div  class="card-body">
                               <study-design info="dataStudyDesign"></study-design>
+                              </div>
+                              </div>
                             <div>
                               <bar-plot></bar-plot>
                             </div>
@@ -60,7 +66,7 @@
                           <div class='col-md-8 col-sm-11 display-table-cell v-align'>
                             <div  class="card" style="width:100% ">
                                 <div  class="card-body">
-                                  <app-info info='dataStudyResults'></app-info>
+                                  <study-info info='dataStudyResults'></study-info>
                                 </div>
                             </div>
                             <div class='card' style="width:100%">
@@ -112,6 +118,7 @@
   <script src='js/directives/imageInfo.js'></script>
   <script src='js/directives/showImages.js'></script>
   <script src='js/directives/studyDesign.js'></script>
+  <script src='js/directives/studyInfo.js'></script>
   <link rel="stylesheet" href="css/style.css">
   </body>
 </html>
