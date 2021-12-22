@@ -113,6 +113,14 @@ divgraph{
     color: #0e1a35;
 }
 
+.image-grid {
+  display: grid;
+  grid-auto-flow: column;
+  display:inline;
+  width:250px;
+  height:250px;
+}
+
 .icon-info {
     position: relative;
 }

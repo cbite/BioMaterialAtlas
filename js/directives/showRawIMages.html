@@ -1,28 +1,9 @@
-<div ngif="info.length>0" class='card-body' ng-cloack>
-    <!-- Create a two column style to display images-->
-    <md-grid-list md-cols-xs='2' md-cols-sm='2' md-cols-md='2' md-cols-gt-md='2'
-                  md-row-height-gt-md='2:1' md-row-height="2:1"
-                  md-gutter='5px' md-gutter-gt-sm='5px'>
-        <md-grid-tile ng-repeat='image in info track by $index'
-                      md-rowspan="2"
-                      md-colspan='2'
-                      md-colspan-sm='2'
-                      md-colspan-xs='2'>
-            <figure ng-src="images/TopoChipRawImages/{{info[$index]}}" style="height:200px;width:200px"  />
-            <label>{{info[$index]}}</label>
-        </md-grid-tile>
-    </md-grid-list>
-        <!--
-    <div class='col-sm-4' >
+<div ngif="info.length>0"  ng-cloack>
+    <h4>Images in dataset</h4>
         <div ng-repeat='image in info track by $index'>
-         create a new row per each two images
-        <div class='row-sm-4' >
-            <figcaption>{{info[$index]}}</figcaption>
-
+        <div class="col-md-6 col-xs-6">
+            <figcaption >{{info[$index]}}</figcaption>
             <img ng-src="images/TopoChipRawImages/{{info[$index]}}"  style="height:200px;width:200px" />
         </div>
         </div>
-
-    </div>
-    -->
 </div>
