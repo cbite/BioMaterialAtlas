@@ -57,14 +57,18 @@ app.controller('FirstController', function($scope,getData,d3Service) {
     }
 
     $scope.defineImagesToShow=function($scope){
+        // TO DO: json object has a new key called 'Image' containing the info to display the right image
+        console.log('Print deze waarde')
+        console.log($scope.datasetSelected.Images.ImagesToDisplay)
+        console.log('Gaat het hier fout of wat')
         // Data sheet contains a value for showImagesSurface
         var images= new Array();
-        console.log($scope.datasetSelected.Results)
-        if($scope.datasetSelected.Results.ImageForSurfaces){
+        if($scope.datasetSelected.Images.ImagesToDisplay){
+            // Check if image class is TE heart valve, TopoChip or Supramolecular
             // Images are from TopoChip studies
             const surface='Surface_FeatureIdx_'
             // separate the image names based on comma separated 
-            const tmp_images=$scope.datasetSelected.Results.ImagesStudyDesign.split(',')
+            const tmp_images=$scope.datasetSelected.Images.ImagesStudyDesign.split(',')
             // join '.png' to each elemenet
             tmp_images.forEach(element =>{
                 var tmp_element=element.concat('.png')
@@ -72,14 +76,6 @@ app.controller('FirstController', function($scope,getData,d3Service) {
                 images.push(tmp_element_complete);
             })
             return images;
-        }
-        else if($scope.datasetSelected.Results.ImageOfValves){
-            const tmp_images=$scope.datasetSelected.Results.ImageStudyDesign.split(',')
-            tmp_images.forEach(element=>{
-                images.push(element)
-            })
-            return images
-            //  Images to show are from heat valve studies
         }
         else{
             // Should not plot any images thus return null object
