@@ -57,10 +57,6 @@ app.controller('FirstController', function($scope,getData,d3Service) {
     }
 
     $scope.defineImagesToShow=function($scope){
-        // TO DO: json object has a new key called 'Image' containing the info to display the right image
-        console.log('Print deze waarde')
-        console.log($scope.datasetSelected.Images.ImagesToDisplay)
-        console.log('Gaat het hier fout of wat')
         // Data sheet contains a value for showImagesSurface
         var images= new Array();
         if($scope.datasetSelected.Images.ImagesToDisplay){
@@ -78,6 +74,7 @@ app.controller('FirstController', function($scope,getData,d3Service) {
             return images;
         }
         else{
+            // TO DO: if imagesToDisplay is FALSE there should be no image displayed
             // Should not plot any images thus return null object
             var images = null;
             return images;
