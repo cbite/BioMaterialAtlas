@@ -59,7 +59,7 @@ app.controller('FirstController', function($scope,getData,d3Service) {
     $scope.defineImagesToShow=function($scope){
         // Data sheet contains a value for showImagesSurface
         var images= new Array();
-        if($scope.datasetSelected.Images.ImagesToDisplay){
+        if($scope.datasetSelected.Images.ImagesToDisplay === 'TRUE'){
             // Check if image class is TE heart valve, TopoChip or Supramolecular
             // Images are from TopoChip studies
             const surface='Surface_FeatureIdx_'
