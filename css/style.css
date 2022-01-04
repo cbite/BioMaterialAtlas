@@ -1,5 +1,9 @@
+html{
+  min-height: calc(100vh - 100px);
+}
 body {
 	background-color: white;
+  min-height: calc(100vh - 100px);
 }
 h1 {
 	color:black
@@ -340,18 +344,19 @@ header {
 
 .tab {
     padding: 10px 20px; /* Gives some space to tab titles */
-    color: darkblue; /* Colors the text in gray */
-    font-weight: bold;
+    color: white; /* Colors the text in gray */
+    font-weight:normal;
+    background-color: darkblue;
     font-size: 25px;
  }
 
  .activetab {
-    color: green;
+    font-weight: bold;
  }
 
- .tabs {
-    margin: 15px; 
-    background-color: white;
+ .tabs { 
+   height:50px;
+    background-color: darkblue;
  }
  
  /* Only visible when the mouse is on a tab title */
@@ -664,6 +669,39 @@ header {
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
   }
+
+  .card-deck .card-researchline {
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px solid;
+    border-radius: 0.25rem;
+    max-width: 33%;
+  }
+
+  .card-deck .card-researchline .card-body-researchline{
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 4rem;
+  }
+
+  .card-deck .card-researchline .card-body-researchline .card-body-researchline-image{
+    max-width:30%;
+    float:left;
+    padding-right: 10px;
+  }
+
+  .card-deck .card-researchline .card-body-researchline .card-header{
+    padding: 0.5em;
+    text-align: center;
+  }
+  .card-deck .card-researchline .card-body-researchline .card-text{
+    font-size:12px;
+    font-weight:normal;
+  }
+
+  .card-deck .card-researchline .card-body-researchline .card-text .card-body-researchline-text{
+    text-align:left;
+  }
   
   .card > hr {
     margin-right: 0;
@@ -685,7 +723,15 @@ header {
     flex: 1 1 auto;
     padding: 4rem;
   }
-  
+  .card-header-big{
+    align-items: center;
+    border: 1px solid black;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    font-size:25px;
+    font-weight: bold;
+    font-display: center;
+  }
   .card-title {
     margin-bottom: 0.75rem;
   }
@@ -710,20 +756,14 @@ header {
   .card-header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
+    font-size:15px;
+    font-weight: bold;
+    font-display: center;
     background-color: rgba(0, 0, 0, 0.03);
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
   }
 
-  .card-header-welcome{
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 0;
-    background-color:white;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
+ 
   .card-header:first-child {
     border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
   }
@@ -790,6 +830,10 @@ header {
   }
   
   .card-deck .card {
+    margin-bottom: 15px;
+  }
+
+  .card-deck .card-welcome {
     margin-bottom: 15px;
   }
 
