@@ -8,7 +8,7 @@ import os
 import json
 
 # Change the working directory
-#working_directory_path='C:/Users/tkuijpe1/OneDrive - TU Eindhoven/Documents/05_MDR/02_BiomaterialsAtlas/01_TopoChip/01_Studies/03_TopoWellPlate'
+#working_directory_path='C:/Users/tkuijpe1/OneDrive - TU Eindhoven/Documents/05_MDR/02_BiomaterialsAtlas/01_TopoChip/01_Studies/01_ALPScreen'
 working_directory_path='C:/Users/tkuijpe1/OneDrive - TU Eindhoven/Documents/05_MDR/02_BiomaterialsAtlas/02_HeartValvesAndVessels/01_Studies/dTEHVs1'
 os.chdir(working_directory_path)
 
@@ -16,11 +16,13 @@ os.chdir(working_directory_path)
 studyDescription=pd.read_csv('StudyDescription.txt',sep='\t')
 studyDesign=pd.read_csv('StudyDesign.txt',sep='\t')
 studyResults=pd.read_csv('StudyResults.txt',sep='\t')
+studyImages=pd.read_csv('StudyImages.txt',sep='\t')
 
 study_data=dict()
 study_data['Description']={}
 study_data['Design']={}
 study_data['Results']={}
+study_data['Images']={}
 i=0
 for x in studyDescription.Key:
     study_data['Description'][x]=studyDescription.Value[i]
@@ -34,7 +36,11 @@ k=0
 for z in studyResults.Key:
     study_data['Results'][z]=studyResults.Value[k]
     k=k+1
+b=0
+for a in studyImages.Key:
+    study_data['Images'][a]=studyImages.Value[b]
+    b=b+1
 
 
-with open('dTHEVS1_BMA.json', 'w') as json_file:
+with open('05_dTEHVs1_BMA.json', 'w') as json_file:
    json.dump(study_data, json_file)
