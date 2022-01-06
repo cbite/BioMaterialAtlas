@@ -59,18 +59,6 @@ divgraph{
 
 
 
-
-
-#navigation {
-    background: white;
-    border-right: black;
-    border-width: 3px;
-}
-
-#navigation {
-    padding: 0;
-}
-
 .display-table {
     display: table;
     padding: 0;
@@ -221,30 +209,38 @@ header {
 }
 
 .navi-data{
-  background-color: green;
+  background-color: #f8f8ff;
+  width:100%;
+  height:1000px
 }
 .navi-data ul{
   display: inline;
+  padding:0;
+  margin:0;
   align-items: left;
   margin-bottom: 0px;
   list-style: none;
+  overflow:auto;
 }
 
 .navi-data li {
   border: 1px solid;
-  width: 100%; /* Alternatively, you could set a specific width on the ul, and use flex-grow:1 here to make all the li elements the same width */
-  height: 50px;
-  font-size: 32;
+  border-radius: 5px;
+  padding:5%;
+  width: 100%; 
+  height: 90px;
+  font-size: 28;
   display: flex; /* allows align-items to work below */
-  justify-content: center; /* Horizontally centers single-line elements */
-  text-align:center; /* Horizontally centers text within line-wrapped elements */
+  justify-content: left; /* Horizontally centers single-line elements */
+  text-align:left; /* Horizontally centers text within line-wrapped elements */
   align-items: center; /* vertical */
   background-color: white;
 }
 
 .navi-data li a{
   display: block;
-  color:black;
+  color:blue;
+  font-weight: bold;
   text-decoration: none;
   align-items: center;
   align-content: right;
@@ -667,14 +663,32 @@ header {
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
+    border-radius: 15px;
   }
+
+  .card .card-body-description{
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 4rem;
+    background-color:white;
+    border: 1px solid black;
+    border-radius: 15px;
+  }
+  .card .card-body-study-design{
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 4rem;
+    background-color:white;
+    border: 1px solid black;
+    border-radius: 15px;
+  }
+
 
   .card-deck .card-researchline {
     background-color: #fff;
     background-clip: border-box;
     border: 0px solid;
-    border-radius: 0.25rem;
+    border-radius: 15px;
     max-width: 33%;
   }
 
@@ -722,6 +736,8 @@ header {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 4rem;
+    background-color:white;
+
   }
   .card-header-big{
     align-items: center;
@@ -734,6 +750,7 @@ header {
   }
   .card-title {
     margin-bottom: 0.75rem;
+    background-color:white;
   }
   
   .card-subtitle {
