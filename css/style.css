@@ -59,18 +59,6 @@ divgraph{
 
 
 
-
-
-#navigation {
-    background: white;
-    border-right: black;
-    border-width: 3px;
-}
-
-#navigation {
-    padding: 0;
-}
-
 .display-table {
     display: table;
     padding: 0;
@@ -232,6 +220,7 @@ header {
   align-items: left;
   margin-bottom: 0px;
   list-style: none;
+  overflow:auto;
 }
 
 .navi-data li {
@@ -674,14 +663,32 @@ header {
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
+    border-radius: 15px;
   }
+
+  .card .card-body-description{
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 4rem;
+    background-color:white;
+    border: 1px solid black;
+    border-radius: 15px;
+  }
+  .card .card-body-study-design{
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 4rem;
+    background-color:white;
+    border: 1px solid black;
+    border-radius: 15px;
+  }
+
 
   .card-deck .card-researchline {
     background-color: #fff;
     background-clip: border-box;
     border: 0px solid;
-    border-radius: 0.25rem;
+    border-radius: 15px;
     max-width: 33%;
   }
 
@@ -729,6 +736,8 @@ header {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 4rem;
+    background-color:white;
+
   }
   .card-header-big{
     align-items: center;
@@ -741,6 +750,7 @@ header {
   }
   .card-title {
     margin-bottom: 0.75rem;
+    background-color:white;
   }
   
   .card-subtitle {
