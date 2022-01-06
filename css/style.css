@@ -221,10 +221,14 @@ header {
 }
 
 .navi-data{
-  background-color: green;
+  background-color: #f8f8ff;
+  width:100%;
+  height:1000px
 }
 .navi-data ul{
   display: inline;
+  padding:0;
+  margin:0;
   align-items: left;
   margin-bottom: 0px;
   list-style: none;
@@ -232,19 +236,22 @@ header {
 
 .navi-data li {
   border: 1px solid;
-  width: 100%; /* Alternatively, you could set a specific width on the ul, and use flex-grow:1 here to make all the li elements the same width */
-  height: 50px;
-  font-size: 32;
+  border-radius: 5px;
+  padding:5%;
+  width: 100%; 
+  height: 90px;
+  font-size: 28;
   display: flex; /* allows align-items to work below */
-  justify-content: center; /* Horizontally centers single-line elements */
-  text-align:center; /* Horizontally centers text within line-wrapped elements */
+  justify-content: left; /* Horizontally centers single-line elements */
+  text-align:left; /* Horizontally centers text within line-wrapped elements */
   align-items: center; /* vertical */
   background-color: white;
 }
 
 .navi-data li a{
   display: block;
-  color:black;
+  color:blue;
+  font-weight: bold;
   text-decoration: none;
   align-items: center;
   align-content: right;
