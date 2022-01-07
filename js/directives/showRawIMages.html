@@ -29,27 +29,15 @@
         <h4>Images in study</h4>
         <div id="carouselImagesStudy" class="carousel" data-ride="carousel" data-interval="false">
             <div class="carousel-inner">
-              <div class="carousel-item active">
+              <div class="carousel-item" ng-class="{active:!$index}" ng-repeat='image in info track by $index'>
                   <div class='row-md-6 row-xs-6'>
                     <div class=col-md-6>
-                        <figcaption>{{info[0]}}</figcaption>
-                        <img class="d-block w-100" ng-src="images/{{info[0]}}" alt="First slide">
+                        <figcaption>{{info[$index]}}</figcaption>
+                        <img class="d-block w-100" ng-src="images/{{info[$index]}}" alt="First slide">
                     </div>
                     <div class=col-md-6>
-                        <figcaption>{{info[1]}}</figcaption>
-                        <img class="d-block w-100" ng-src="images/{{info[1]}}" alt="Second slide">
-                    </div>
-                  </div>
-              </div>
-              <div class="carousel-item">
-                <div class='row-md-6 row-xs-6'>
-                    <div class=col-md-6>
-                        <figcaption>{{info[2]}}</figcaption>
-                        <img class="d-block w-100" ng-src="images/{{info[2]}}" alt="First slide">
-                    </div>
-                    <div class=col-md-6>
-                        <figcaption>{{info[3]}}</figcaption>
-                        <img class="d-block w-100" ng-src="images/{{info[3]}}" alt="Second slide">
+                        <figcaption>{{info[$index+1]}}</figcaption>
+                        <img class="d-block w-100" ng-src="images/{{info[$index+1]}}" alt="Second slide">
                     </div>
                   </div>
               </div>

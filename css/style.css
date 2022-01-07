@@ -40,6 +40,16 @@ h1 {
   height:100px;
 }
 
+.carousel-control-prev{
+  margin-left: -70px;
+  background-color:black;
+  background-size: 10px;
+}
+.carousel-control-next{
+  margin-right:-70px;
+  background-color:black;
+}
+
 .image-slider-container{
   position: relative;
 }
