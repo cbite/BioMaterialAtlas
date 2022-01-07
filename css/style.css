@@ -9,7 +9,7 @@ h1 {
 	color:black
 }
 
-divgraph{
+.divgraph{
   width:100px;
   height:400px;
   outline: 1px dashed red;
@@ -20,8 +20,40 @@ divgraph{
 	width:  100%;
 }
 
+/* style the column in which we display the images */ 
+.column {
+  float: left;
+  width: auto;
+  padding: 5px;
+  margin:0px;
+}
+
+@media screen and (max-width: 500px) {
+  .column {
+    width: 100%;
+  }
+}
 
 
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+  margin-left:20px;
+  width: 100px;
+  height:100px;
+}
+
+.carousel-control-prev{
+  background-color:black;
+  background-size: 10px;
+  align-self: flex-start;
+}
+.carousel-control-next{
+  background-color:black;
+  align-self: flex-end;
+}
+
+.image-slider-container{
+  position: relative;
+}
 
 .col-sm-4-navigation{
 	background-color:white;
@@ -666,6 +698,8 @@ header {
     border-radius: 15px;
   }
 
+  /* CSS styling for the different card boxes study description, research line, study results, study design */
+
   .card .card-body-description{
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
@@ -683,6 +717,15 @@ header {
     border-radius: 15px;
   }
 
+  .card .card-body-images{
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 10px;
+    background-color:white;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-left:10px;
+  }
 
   .card-deck .card-researchline {
     background-color: #fff;

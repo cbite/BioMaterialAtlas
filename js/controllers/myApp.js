@@ -60,16 +60,11 @@ app.controller('FirstController', function($scope,getData,d3Service) {
         // Data sheet contains a value for showImagesSurface
         var images= new Array();
         if($scope.datasetSelected.Images.ImagesToDisplay === 'TRUE'){
-            // Check if image class is TE heart valve, TopoChip or Supramolecular
-            // Images are from TopoChip studies
-            const surface='Surface_FeatureIdx_'
             // separate the image names based on comma separated 
             const tmp_images=$scope.datasetSelected.Images.ImagesStudyDesign.split(',')
             // join '.png' to each elemenet
             tmp_images.forEach(element =>{
-                var tmp_element=element.concat('.png')
-                var tmp_element_complete=surface.concat(tmp_element);
-                images.push(tmp_element_complete);
+                images.push(element);
             })
             return images;
         }
