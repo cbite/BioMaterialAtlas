@@ -34,6 +34,12 @@ h1 {
   }
 }
 
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+  width: 100px;
+  height:100px;
+}
+
 .image-slider-container{
   position: relative;
 }
