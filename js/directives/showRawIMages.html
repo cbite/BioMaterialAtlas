@@ -25,19 +25,20 @@
 -->
 
 <div class='card' style='width:100%'>
+    <h4>Images in study</h4>
+
     <div class='card-body-images' ngif='info.length>0' ng-clock>
-        <h4>Images in study</h4>
-        <div id="carouselImagesStudy" class="carousel" data-ride="carousel" data-interval="false">
+        <div id="carouselImagesStudy" class="carousel col-md-10" data-ride="carousel" data-interval="false">
             <div class="carousel-inner">
               <div class="carousel-item" ng-class="{active:!$index}" ng-repeat='image in info track by $index'>
                   <div class='row-md-6 row-xs-6'>
-                    <div class=col-md-6>
+                    <div class='col-md-5'>
                         <figcaption>{{info[$index]}}</figcaption>
-                        <img class="d-block w-100" ng-src="images/{{info[$index]}}" alt="First slide">
+                        <img class="d-block w-100" ng-src="images/{{info[$index]}}" alt="">
                     </div>
-                    <div class=col-md-6>
+                    <div class='col-md-5'>
                         <figcaption>{{info[$index+1]}}</figcaption>
-                        <img class="d-block w-100" ng-src="images/{{info[$index+1]}}" alt="Second slide">
+                        <img class="d-block w-100" ng-src="images/{{info[$index+1]}}" alt="">
                     </div>
                   </div>
               </div>
