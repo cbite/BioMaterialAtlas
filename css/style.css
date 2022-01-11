@@ -34,16 +34,18 @@ h1 {
   }
 }
 
+.carousel-inner{
+  padding-left: 150px;
+}
 
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
-  margin-left:20px;
+  margin-left:10px;
   width: 100px;
   height:100px;
 }
 
 .carousel-control-prev{
-  background-color:black;
-  background-size: 10px;
+  background-color: black;
   align-self: flex-start;
 }
 .carousel-control-next{

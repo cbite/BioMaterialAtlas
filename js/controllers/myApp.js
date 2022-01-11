@@ -5,11 +5,11 @@ app.controller('FirstController', function($scope,getData,d3Service) {
     $scope.loadedData.then(function(data){
         // load the data to the dataset in scope
         $scope.data=data.data;
-        console.log($scope.data)
+        $scope.naviEntry=Object.entries($scope.data)
         // Select the first study to start the database
         $scope.datasetSelected=$scope.data.ALP
         $scope.selectData=function(){
-            var selected_name=this.name.Description.Name
+            var selected_name=this.name[1].Description.Name
             // select the data based on the button click
             var tmp_data_all=Object.values($scope.data);
             // filter through the data to find the name
