@@ -28,11 +28,11 @@
               <!-- Area to define the data set panel on the left-->
                   <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
                       <div class="search hidden-xs hidden-sm">
-                        <input type="text" placeholder="Search" id="search" ng-model='search'>
+                        <input type="text" placeholder="Search a data set"  ng-model="search"/>
                       </div>
                       <div class="navi-data">
-                          <ul ng-repeat="name in data">
-                              <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{name.Description.Name}}</span></a></li>
+                          <ul ng-repeat="name in naviEntry | filter:search">
+                              <li class="active"><a href="#" ng-click="selectData()"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">{{name[1].Description.Name}}</span></a></li>
                           </ul>
                       </div>
                   </div> 
