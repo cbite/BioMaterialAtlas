@@ -9,6 +9,7 @@ app.controller('FirstController', function($scope,getData,d3Service) {
         // Select the first study to start the database
         $scope.datasetSelected=$scope.data.ALP
         $scope.selectData=function(){
+            // select name[1] to enter the data object in the nested json
             var selected_name=this.name[1].Description.Name
             // select the data based on the button click
             var tmp_data_all=Object.values($scope.data);
