@@ -13,7 +13,7 @@ var svg = d3.select('#div-for-barchar').append('svg')
 // stress and strain come from a nested json file
 
 d3.json('data/21G7_StressStrain.json',function(data){
-
+    console.log(data['50%_strain'].Stress)
     // build x-axis
     var x = d3.scaleLinear().domain(0,0.5).range([0,width]);
     var y = d3.scaleLinear().domain(0,1).range([0,height]);
@@ -23,6 +23,14 @@ d3.json('data/21G7_StressStrain.json',function(data){
     svg.append("g")
       .call(d3.axisLeft(y));
 
-    
+    svg.append('path')
+       .datum(data['50%_strain'])
+       .attr('fill','none')
+       .attr('stroke','red')
+       .attr('stroke-width',1.5)
+       .attr('d',d3.line()
+            .x(function(d){return x(d.Strain)})
+            .y(function(d){return y(d.Stress)})
+       )
 
 });
