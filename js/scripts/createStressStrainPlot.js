@@ -13,24 +13,30 @@ var svg = d3.select('#div-for-barchar').append('svg')
 // stress and strain come from a nested json file
 
 d3.json('data/21G7_StressStrain.json',function(data){
-    console.log(data['50%_strain'].Stress)
-    // build x-axis
-    var x = d3.scaleLinear().domain(0,0.5).range([0,width]);
-    var y = d3.scaleLinear().domain(0,1).range([0,height]);
-
+    // data to plot will be selected on a drop down menu in the end
+    var data_to_plot=data['50%_strain']
+    // map the relation between stress and strain values to plot
+    var data_plot=data_to_plot.Strain.map(function(d,i){
+      return{
+        Strain:data_to_plot.Strain[i],
+        Stress:data_to_plot.Stress[i]
+      }
+    });
+    
+    var xScale = d3.scaleLinear().domain([0,0.5]).range([0,width]);
+    var yScale = d3.scaleLinear().domain([0,1]).range([height,0]);
+    // Add the axis to the plot
     svg.append('g').attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
+    .call(d3.axisBottom(xScale));
     svg.append("g")
-      .call(d3.axisLeft(y));
+      .call(d3.axisLeft(yScale));
 
-    svg.append('path')
-       .datum(data['50%_strain'])
-       .attr('fill','none')
-       .attr('stroke','red')
-       .attr('stroke-width',1.5)
-       .attr('d',d3.line()
-            .x(function(d){return x(d.Strain)})
-            .y(function(d){return y(d.Stress)})
-       )
+    // use the d3js line generator
+    var line = d3.line()
+                 .x(function(d, i) {console.log(xScale(data_plot[i])); return xScale(data_plot.Strain[i]); }) 
+                 .y(function(d) { return yScale(data_plot.Stress[i]); }) 
+                 .curve(d3.curveMonotoneX) // apply smoothing to the line
 
+    // Add the line to the plot
+    
 });
