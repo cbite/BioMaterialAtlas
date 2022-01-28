@@ -6,7 +6,7 @@
 import os
 import pandas as pd
 import json
-WORKING_DIR=''
+WORKING_DIR='C:/Users/tkuijpe1/OneDrive - TU Eindhoven/Documents/05_MDR/02_BiomaterialsAtlas/02_HeartValvesAndVessels/Vessels/'
 FILE_NAMES=['21G7-R Carotid - 50%_strain.csv','21G7-R Carotid - 70%_strain.csv']
 os.chdir(WORKING_DIR)
 json_object=dict()
@@ -17,8 +17,8 @@ for x in FILE_NAMES:
     tmp_split=x.split('.')
     key_name=tmp_split[0].split('-')[2].strip()
     json_object[key_name]={}
-    json_object[key_name]['Stress']=tmp_file['Stress'].to_json()
-    json_object[key_name]['Strain'] = tmp_file['Strain'].to_json()
+    json_object[key_name]['Stress']=tmp_file['Stress'].to_numpy().tolist()
+    json_object[key_name]['Strain'] = tmp_file['Strain'].to_numpy().tolist()
 
 
 json_object['Documentation']={}
