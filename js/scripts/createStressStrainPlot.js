@@ -14,8 +14,14 @@ var svg = d3.select('#div-for-barchar').append('svg')
 
 d3.json('data/21G7_StressStrain.json',function(data){
     // data to plot will be selected on a drop down menu in the end
+    console.log(data)
     var groups=['50%_strain','70%_strain']
-    d3.select('#selectButton').selectAll('myOptions')
+    
+    //var myColor = d3.scaleOrdinal()
+    //  .domain(groups)
+    //  .range(d3.schemeSet2)
+    
+      d3.select('#selectButton').selectAll('myOptions')
       .data(groups).enter().append('option').text(function(d){return d;})
       .attr('value',function(d){return d;})
     
@@ -62,9 +68,11 @@ d3.json('data/21G7_StressStrain.json',function(data){
       var dataFilter = data[selectedGroup];
       svg.append("path")
       .data([dataFilter])
+      .transition()
+      .duration(1000)
       .attr("class", "line")
       .attr('fill','none')
-      .attr('stroke','steelblue')
+      .attr('stroke',myColor(seletedGroup))
       .attr('stroke-width','2px')
       .attr("d", lineValues);
     }
