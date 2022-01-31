@@ -14,6 +14,12 @@ var svg = d3.select('#div-for-barchar').append('svg')
 
 d3.json('data/21G7_StressStrain.json',function(data){
     // data to plot will be selected on a drop down menu in the end
+    var groups=['50%_strain','70%_strain']
+    d3.select('#selectButton').selectAll('myOptions')
+      .data(groups).enter().append('option').text(function(d){return d;})
+      .attr('value',function(d){return d;})
+    
+    
     var data_to_plot=data['50%_strain']
 
     // map the relation between stress and strain values to plot
@@ -47,4 +53,27 @@ d3.json('data/21G7_StressStrain.json',function(data){
     svg.append("g")
       .call(d3.axisLeft(yScale));
 
+
+    // function to update the line based on selection
+    // A function that update the chart
+    function update(selectedGroup) {
+
+      // Create new data with the selection?
+      var dataFilter = data[selectedGroup];
+      svg.append("path")
+      .data([dataFilter])
+      .attr("class", "line")
+      .attr('fill','none')
+      .attr('stroke','steelblue')
+      .attr('stroke-width','2px')
+      .attr("d", lineValues);
+    }
+
+
+      d3.select("#selectButton").on("change", function(d) {
+        // recover the option that has been chosen
+        var selectedOption = d3.select(this).property("value")
+        // run the updateChart function with this selected option
+        update(selectedOption)
+    })
 });
