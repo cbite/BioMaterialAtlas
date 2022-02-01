@@ -14,8 +14,11 @@ var svg = d3.select('#div-for-barchar').append('svg')
 
 d3.json('data/21G7_StressStrain.json',function(data){
     // data to plot will be selected on a drop down menu in the end
-<<<<<<< HEAD
-    console.log(data)
+    var select=document.getElementById('selectButton');
+    console.log(select)
+    console.log(select.options)
+    //var value= select.options[select.selectedIndex].value
+    //console.log(value);
     var groups=['50%_strain','70%_strain']
     
     //var myColor = d3.scaleOrdinal()
@@ -23,15 +26,11 @@ d3.json('data/21G7_StressStrain.json',function(data){
     //  .range(d3.schemeSet2)
     
       d3.select('#selectButton').selectAll('myOptions')
-=======
-    var groups=['50%_strain','70%_strain']
-    d3.select('#selectButton').selectAll('myOptions')
->>>>>>> 591d1d0f886cc4740c70ccb60f6d91c6557a0ecb
       .data(groups).enter().append('option').text(function(d){return d;})
       .attr('value',function(d){return d;})
     
     
-    var data_to_plot=data['50%_strain']
+    var data_to_plot=data['70%_strain']
 
     // map the relation between stress and strain values to plot
     var data_plot=data_to_plot.Strain.map(function(d,i){
@@ -41,7 +40,7 @@ d3.json('data/21G7_StressStrain.json',function(data){
       }
     });
 
-    var xScale = d3.scaleLinear().domain([0,0.5]).range([0,width]);
+    var xScale = d3.scaleLinear().domain([0,1]).range([0,width]);
     var yScale = d3.scaleLinear().domain([-0.1,0.1]).range([height,0]);
 
     // use the d3js line generator
@@ -50,7 +49,7 @@ d3.json('data/21G7_StressStrain.json',function(data){
                  .y(function(d){return yScale(d.Stress)});
 
     // Add the line to the plot
-    svg.append("path")
+    var line =svg.append('g').append("path")
       .data([data_plot])
       .attr("class", "line")
       .attr('fill','none')
@@ -68,27 +67,11 @@ d3.json('data/21G7_StressStrain.json',function(data){
     // function to update the line based on selection
     // A function that update the chart
     function update(selectedGroup) {
-
       // Create new data with the selection?
       var dataFilter = data[selectedGroup];
-<<<<<<< HEAD
-      svg.append("path")
-      .data([dataFilter])
-      .transition()
-      .duration(1000)
-      .attr("class", "line")
-      .attr('fill','none')
-      .attr('stroke',myColor(seletedGroup))
-=======
-      console.log(dataFilter)
-      svg.append("path")
-      .data([dataFilter])
-      .attr("class", "line")
-      .attr('fill','none')
-      .attr('stroke','steelblue')
->>>>>>> 591d1d0f886cc4740c70ccb60f6d91c6557a0ecb
-      .attr('stroke-width','2px')
-      .attr("d", lineValues);
+      line.data([dataFilter])
+      .attr("d", lineValues)
+      .attr('stroke','red');
     }
 
 
@@ -98,8 +81,4 @@ d3.json('data/21G7_StressStrain.json',function(data){
         // run the updateChart function with this selected option
         update(selectedOption)
     })
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> 591d1d0f886cc4740c70ccb60f6d91c6557a0ecb
