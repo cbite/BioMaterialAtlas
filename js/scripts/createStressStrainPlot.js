@@ -13,12 +13,6 @@ var svg = d3.select('#div-for-barchar').append('svg')
 // stress and strain come from a nested json file
 
 d3.json('data/21G7_StressStrain.json',function(data){
-    // data to plot will be selected on a drop down menu in the end
-    var select=document.getElementById('selectButton');
-    console.log(select)
-    console.log(select.options)
-    //var value= select.options[select.selectedIndex].value
-    //console.log(value);
     var groups=['50%_strain','70%_strain']
     
     //var myColor = d3.scaleOrdinal()
@@ -29,8 +23,10 @@ d3.json('data/21G7_StressStrain.json',function(data){
       .data(groups).enter().append('option').text(function(d){return d;})
       .attr('value',function(d){return d;})
     
-    
-    var data_to_plot=data['70%_strain']
+        // data to plot will be selected on a drop down menu in the end
+      var select=document.getElementById('selectButton');
+      var value_to_plot=select.options[select.selectedIndex].value;
+      var data_to_plot=data[value_to_plot];
 
     // map the relation between stress and strain values to plot
     var data_plot=data_to_plot.Strain.map(function(d,i){
@@ -69,8 +65,12 @@ d3.json('data/21G7_StressStrain.json',function(data){
     function update(selectedGroup) {
       // Create new data with the selection?
       var dataFilter = data[selectedGroup];
+      console.log(dataFilter)
       line.data([dataFilter])
-      .attr("d", lineValues)
+      .attr("d", d3.line()
+      .x(function(d) { return xScale(+d.Strain) })
+      .y(function(d) { return yScale(+d.Stress) })
+      )
       .attr('stroke','red');
     }
 
