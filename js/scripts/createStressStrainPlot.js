@@ -45,8 +45,8 @@ d3.json('data/21G7_StressStrain.json',function(data){
                  .y(function(d){return yScale(d.Stress)});
 
     // Add the line to the plot
-    var line =svg.append('g').append("path")
-      .data([data_plot])
+    var lineGraph =svg.append('g').append("path")
+      .datum(data_plot)
       .attr("class", "line")
       .attr('fill','none')
       .attr('stroke','steelblue')
@@ -65,15 +65,19 @@ d3.json('data/21G7_StressStrain.json',function(data){
     function update(selectedGroup) {
       // Create new data with the selection?
       var dataFilter = data[selectedGroup];
-      console.log(dataFilter)
-      line.data([dataFilter])
+      console.log('Update function called')
+      // add the new line
+      var line=svg.append('g').append("path")
+      .datum(dataFilter)
+      .attr("class", "line")
+      .attr('fill','none')
+      .attr('stroke','steelblue')
+      .attr('stroke-width','2px')
       .attr("d", d3.line()
-      .x(function(d) { return xScale(+d.Strain) })
-      .y(function(d) { return yScale(+d.Stress) })
-      )
-      .attr('stroke','red');
+                   .x(function(d){console.log('change');return xScale(d.Strain)})
+                   .y(function(d){return yScale(d.Stress)})
+      );
     }
-
 
       d3.select("#selectButton").on("change", function(d) {
         // recover the option that has been chosen
