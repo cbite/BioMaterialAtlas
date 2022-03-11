@@ -1,0 +1,9 @@
+﻿Gene,Surface,Value,Timepoint
+CYP3A4,Topo_H1,3,day14
+CYP3A4,Topo_H2,2.2,day14
+CYP3A4,Topo_H3,3.1,day14
+CYP3A4,Topo_NP,1,day14
+CYP3A4,Topo_H1,0.2,day30
+CYP3A4,Topo_H2,0.1,day30
+CYP3A4,Topo_H3,0.18,day30
+CYP3A4,Topo_NP,0.05,day30
